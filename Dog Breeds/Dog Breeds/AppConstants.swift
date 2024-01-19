@@ -12,4 +12,7 @@ struct AppConstants {
     static let baseUrl = "https://dog.ceo/api"
     static let allDogBreedsUrlPath = "/breeds/list/all"
     static let success = "success"
+
+    // Titles
+    static let dogBreedsTitle = "Dog Breeds"
 }
