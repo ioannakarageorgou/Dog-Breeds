@@ -30,7 +30,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
 
             switch result {
             case .success(let response): do {
-                guard response?.status == "OK" else { throw NetworkError.requestfailed }
+                guard response?.status == AppConstants.success else { throw NetworkError.requestfailed }
                 guard let breeds = response?.message.keys.compactMap({ name -> Breed in
                     return Breed(name: name)
                 }) else { throw NetworkError.nodata }

@@ -1,5 +1,5 @@
 //
-//  BreedsViewModel.swift
+//  BreedViewModel.swift
 //  Dog Breeds
 //
 //  Created by Ioanna Karageorgou on 19/1/24.
@@ -7,16 +7,27 @@
 
 import Foundation
 
-class BreedsViewModel {
-    var breeds: [Breed]?
-    var networkError: NetworkError?
+class BreedListViewModel {
+    var breeds: [Breed]? {
+        didSet {
+            breedsDidChange?(breeds)
+        }
+    }
+    var networkError: NetworkError? {
+        didSet {
+            networkErrorDidChange?(networkError)
+        }
+    }
+
+    var breedsDidChange: (([Breed]?) -> Void)?
+    var networkErrorDidChange: ((NetworkError?) -> Void)?
 
     private var repository: BreedsRepositoryProtocol
 
-    init(repository: BreedsRepositoryProtocol) {
+    init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
         self.repository = repository
     }
-    
+
     func fetchAllDogBreeds() async {
         do {
             let list = try await repository.fetchAllDogBreedsFromServer()

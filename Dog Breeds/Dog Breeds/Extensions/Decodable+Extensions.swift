@@ -13,7 +13,6 @@ extension Decodable {
             let responseModel = try decodeResponseModel(T.self, from: data)
             return responseModel
         } catch {
-//            print(Self.self, error.localizedDescription)
             return nil
         }
     }
