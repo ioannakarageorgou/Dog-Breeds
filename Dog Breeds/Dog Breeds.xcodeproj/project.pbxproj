@@ -15,6 +15,9 @@
 		015762E82B5A6549003F82F5 /* Dog_BreedsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015762E72B5A6549003F82F5 /* Dog_BreedsTests.swift */; };
 		015762F22B5A6549003F82F5 /* Dog_BreedsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015762F12B5A6549003F82F5 /* Dog_BreedsUITests.swift */; };
 		015762F42B5A6549003F82F5 /* Dog_BreedsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015762F32B5A6549003F82F5 /* Dog_BreedsUITestsLaunchTests.swift */; };
+		015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763072B5A7030003F82F5 /* NetworkManager.swift */; };
+		0157630A2B5A7067003F82F5 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763092B5A7067003F82F5 /* NetworkConfig.swift */; };
+		0157630D2B5A70C7003F82F5 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157630C2B5A70C7003F82F5 /* AppConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		015762ED2B5A6549003F82F5 /* Dog BreedsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dog BreedsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		015762F12B5A6549003F82F5 /* Dog_BreedsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog_BreedsUITests.swift; sourceTree = "<group>"; };
 		015762F32B5A6549003F82F5 /* Dog_BreedsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog_BreedsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		015763072B5A7030003F82F5 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		015763092B5A7067003F82F5 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
+		0157630C2B5A70C7003F82F5 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 				015763022B5A6A31003F82F5 /* ViewModels */,
 				015763032B5A6A38003F82F5 /* Services */,
 				015763012B5A6A2C003F82F5 /* Models */,
+				0157630B2B5A70AE003F82F5 /* Utilities */,
 				015763052B5A6D94003F82F5 /* Supporting Files */,
 				015763042B5A6D87003F82F5 /* Resources */,
 			);
@@ -149,6 +156,7 @@
 		015763032B5A6A38003F82F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				015763062B5A701E003F82F5 /* NetworkKit */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -170,6 +178,23 @@
 				015762D22B5A6547003F82F5 /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		015763062B5A701E003F82F5 /* NetworkKit */ = {
+			isa = PBXGroup;
+			children = (
+				015763072B5A7030003F82F5 /* NetworkManager.swift */,
+				015763092B5A7067003F82F5 /* NetworkConfig.swift */,
+			);
+			path = NetworkKit;
+			sourceTree = "<group>";
+		};
+		0157630B2B5A70AE003F82F5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				0157630C2B5A70C7003F82F5 /* AppConstants.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +327,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */,
+				0157630D2B5A70C7003F82F5 /* AppConstants.swift in Sources */,
+				0157630A2B5A7067003F82F5 /* NetworkConfig.swift in Sources */,
 				015762D52B5A6547003F82F5 /* ViewController.swift in Sources */,
 				015762D12B5A6547003F82F5 /* AppDelegate.swift in Sources */,
 				015762D32B5A6547003F82F5 /* SceneDelegate.swift in Sources */,
