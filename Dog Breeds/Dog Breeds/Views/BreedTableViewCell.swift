@@ -48,4 +48,3 @@ class BreedTableViewCell: UITableViewCell {
         contentLabel.text = breed.name
     }
 }
-

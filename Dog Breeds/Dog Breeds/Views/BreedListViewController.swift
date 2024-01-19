@@ -112,8 +112,6 @@ extension BreedListViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - UITableViewDelegate
-
 extension BreedListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO navigate to screen 2

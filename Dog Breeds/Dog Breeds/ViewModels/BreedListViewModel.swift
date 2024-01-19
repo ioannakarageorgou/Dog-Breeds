@@ -31,7 +31,7 @@ class BreedListViewModel {
     func fetchAllDogBreeds() async {
         do {
             let list = try await repository.fetchAllDogBreedsFromServer()
-            self.breeds = !list.isEmpty ? list : []
+            self.breeds = !list.isEmpty ? list.sorted() : []
         } catch {
             self.networkError = error as? NetworkError
         }
