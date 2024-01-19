@@ -21,6 +21,7 @@ class BreedListViewController: UIViewController {
 
         setUpBindings()
         configureTitleLabel()
+        configureFavoritesButton()
         configureTable()
         configureLoadingIndicator()
 
@@ -86,6 +87,23 @@ private extension BreedListViewController {
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             titleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+
+    func configureFavoritesButton() {
+        let heartSymbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
+        let heartImage = UIImage(systemName: AppConstants.heartImageName, withConfiguration: heartSymbolConfiguration)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: heartImage,
+            style: .plain,
+            target: self,
+            action: #selector(showFavorites)
+        )
+        navigationItem.rightBarButtonItem?.tintColor = AppConstants.heartColor
+    }
+
+    @objc private func showFavorites() {
+        // TODO navigate to the favorites screen
+        print("Show Favorites tapped!")
     }
 
     func configureLoadingIndicator() {

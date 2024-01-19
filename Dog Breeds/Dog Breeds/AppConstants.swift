@@ -20,4 +20,8 @@ struct AppConstants {
     // Colors
     static let backgroundColor = UIColor(hex: "#ededf2")
     static let cellBackgroundColor = UIColor(hex: "#f6f6f6")
+    static let heartColor = UIColor(hex: "#8e6048")
+
+    // Images
+    static let heartImageName = "heart"
 }
