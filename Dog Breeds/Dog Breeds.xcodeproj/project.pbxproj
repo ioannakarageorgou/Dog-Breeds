@@ -24,6 +24,7 @@
 		015763172B5A8436003F82F5 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763162B5A8436003F82F5 /* Decodable+Extensions.swift */; };
 		015763192B5A8B80003F82F5 /* BreedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763182B5A8B80003F82F5 /* BreedListViewModel.swift */; };
 		0157631B2B5AC1AA003F82F5 /* BreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157631A2B5AC1AA003F82F5 /* BreedTableViewCell.swift */; };
+		0157631D2B5AD0A4003F82F5 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157631C2B5AD0A4003F82F5 /* UIColor+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		015763162B5A8436003F82F5 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		015763182B5A8B80003F82F5 /* BreedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedListViewModel.swift; sourceTree = "<group>"; };
 		0157631A2B5AC1AA003F82F5 /* BreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTableViewCell.swift; sourceTree = "<group>"; };
+		0157631C2B5AD0A4003F82F5 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				015763162B5A8436003F82F5 /* Decodable+Extensions.swift */,
+				0157631C2B5AD0A4003F82F5 /* UIColor+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				0157631B2B5AC1AA003F82F5 /* BreedTableViewCell.swift in Sources */,
 				015763142B5A7E1D003F82F5 /* Breed.swift in Sources */,
 				015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */,
+				0157631D2B5AD0A4003F82F5 /* UIColor+Extensions.swift in Sources */,
 				015763102B5A71FE003F82F5 /* BreedsRepository.swift in Sources */,
 				0157630D2B5A70C7003F82F5 /* AppConstants.swift in Sources */,
 				0157630A2B5A7067003F82F5 /* NetworkConfig.swift in Sources */,

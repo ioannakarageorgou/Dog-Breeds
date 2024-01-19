@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct AppConstants {
     // Network
@@ -15,4 +16,8 @@ struct AppConstants {
 
     // Titles
     static let dogBreedsTitle = "Dog Breeds"
+
+    // Colors
+    static let backgroundColor = UIColor(hex: "#ededf2")
+    static let cellBackgroundColor = UIColor(hex: "#f6f6f6")
 }
