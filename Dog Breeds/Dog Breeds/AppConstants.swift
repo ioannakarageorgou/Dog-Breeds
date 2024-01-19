@@ -9,5 +9,6 @@ import Foundation
 
 struct AppConstants {
     // Network
-    static let baseUrl = "https://dog.ceo/api/breeds/list/all"
+    static let baseUrl = "https://dog.ceo/api"
+    static let allDogBreedsUrlPath = "/breeds/list/all"
 }
