@@ -46,18 +46,5 @@ class BreedImageViewModel {
             self.networkError = error as? NetworkError
         }
     }
-
-    func toggleLike(for breedImage: inout BreedImage) {
-        guard let breed = selectedBreed else { return }
-
-        breedImage.isLiked.toggle()
-        if breedImage.isLiked {
-            let likedBreedImage = LikedBreedImage(breed: breed, breedImage: breedImage)
-            saveLikedBreedImageToRealm(likedBreedImage)
-        } else {
-            removeLikedBreedImageFromRealm(breed, breedImage)
-        }
-        breedImagesDidChange?(breedImages)
-    }
 }
 

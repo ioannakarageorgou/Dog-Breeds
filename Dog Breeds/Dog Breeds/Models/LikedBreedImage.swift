@@ -23,3 +23,9 @@ class LikedBreedImage: Object {
         self.imageURL = breedImage.image.absoluteString
     }
 }
+
+extension LikedBreedImage {
+    func toBreedImage() -> BreedImage {
+        return BreedImage(id: UUID(), image: URL(string: imageURL)!)
+    }
+}

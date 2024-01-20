@@ -10,9 +10,14 @@ import Foundation
 protocol BreedsRepositoryProtocol {
     func fetchAllDogBreedsFromServer() async throws -> [Breed]
     func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage]
+    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage)
+    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage)
+    func fetchAllLikedBreedImagesFromRealm() async throws -> [BreedImage]
+    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage]
 }
 
 class BreedsRepository: BreedsRepositoryProtocol {
+
     private let networkManager: NetworkManagerProtocol
     private var realmService: RealmServiceProtocol
 
@@ -90,13 +95,33 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func removeLikedBreedImageFromRealm(_ breed: Breed, _ breedImage: BreedImage) {
+    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) {
         Task {
             do {
                 try await realmService.removeLikedBreedImage(for: breed, and: breedImage)
             } catch {
                 print("Error removing liked breed image from Realm: \(error)")
             }
+        }
+    }
+
+    func fetchAllLikedBreedImagesFromRealm() async throws -> [BreedImage] {
+        do {
+            let likedImages: [LikedBreedImage] = try await realmService.fetchAllLikedBreedImages() ?? []
+            return likedImages.map { $0.toBreedImage() }
+        } catch {
+            print("Error fetching all liked breed images from Realm: \(error)")
+            throw error
+        }
+    }
+
+    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage] {
+        do {
+            let likedImages: [LikedBreedImage] = try await realmService.fetchLikedBreedImages(for: breed) ?? []
+            return likedImages.map { $0.toBreedImage() }
+        } catch {
+            print("Error fetching liked breed images from Realm for breed \(breed.name): \(error)")
+            throw error
         }
     }
 }

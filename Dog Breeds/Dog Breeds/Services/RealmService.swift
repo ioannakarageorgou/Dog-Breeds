@@ -11,7 +11,8 @@ import RealmSwift
 protocol RealmServiceProtocol {
     func saveLikedBreedImage(_ likedBreedImage: LikedBreedImage) async throws
     func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async throws
-    func fetchLikedBreedImages() async throws -> [LikedBreedImage]?
+    func fetchAllLikedBreedImages() async throws -> [LikedBreedImage]?
+    func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreedImage]?
 }
 
 class RealmService: RealmServiceProtocol {
@@ -20,7 +21,7 @@ class RealmService: RealmServiceProtocol {
     init(realm: Realm = try! Realm()) {
         self.realm = realm
     }
-    
+
     func saveLikedBreedImage(_ likedBreedImage: LikedBreedImage) async throws {
         try await MainActor.run {
             try realm.write {
@@ -40,9 +41,18 @@ class RealmService: RealmServiceProtocol {
         }
     }
 
-    func fetchLikedBreedImages() async throws -> [LikedBreedImage]? {
+    func fetchAllLikedBreedImages() async throws -> [LikedBreedImage]? {
         return await MainActor.run {
             let realmObjects = realm.objects(LikedBreedImage.self)
+            guard realmObjects.count > 0 else { return nil }
+            return realmObjects.compactMap { $0 }
+        }
+    }
+
+    func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreedImage]? {
+        return await MainActor.run {
+            let realmObjects = realm.objects(LikedBreedImage.self)
+                .filter("breedName == %@", breed.name)
             guard realmObjects.count > 0 else { return nil }
             return realmObjects.compactMap { $0 }
         }
