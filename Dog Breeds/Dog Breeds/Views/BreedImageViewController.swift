@@ -99,7 +99,9 @@ private extension BreedImageViewController {
 extension BreedImageViewController: BreedImageCellDelegate {
     func didTapLikeButton(for cell: BreedImageCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        viewModel.likeBreedImage(at: indexPath.item)
+        Task {
+            await viewModel.likeBreedImage(at: indexPath.item)
+        }
     }
 }
 

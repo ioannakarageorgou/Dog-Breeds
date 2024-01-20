@@ -11,8 +11,8 @@ protocol BreedsRepositoryProtocol {
     func fetchAllDogBreedsFromServer() async throws -> [Breed]
     func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage]
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage)
-    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage)
+    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage) async
+    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async
 
     func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreedImage]
     func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage]
@@ -87,23 +87,19 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage) {
-        Task {
-            do {
-                try await realmService.saveLikedBreedImage(likedBreedImage)
-            } catch {
-                print("Error saving liked breed image to Realm: \(error)")
-            }
+    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage) async {
+        do {
+            try await realmService.saveLikedBreedImage(likedBreedImage)
+        } catch {
+            print("Error saving liked breed image to Realm: \(error)")
         }
     }
 
-    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) {
-        Task {
-            do {
-                try await realmService.removeLikedBreedImage(for: breed, and: breedImage)
-            } catch {
-                print("Error removing liked breed image from Realm: \(error)")
-            }
+    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async {
+        do {
+            try await realmService.removeLikedBreedImage(for: breed, and: breedImage)
+        } catch {
+            print("Error removing liked breed image from Realm: \(error)")
         }
     }
 

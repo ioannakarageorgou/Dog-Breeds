@@ -51,30 +51,30 @@ class BreedImageViewModel {
         }
     }
 
-    func likeBreedImage(at index: Int) {
+    func likeBreedImage(at index: Int) async {
         guard let breedImage = breedImages?[index] else { return }
         if isImageLiked(breedImage) {
-            unlikeBreedImage(breedImage)
+            await unlikeBreedImage(breedImage)
         } else {
-            likeBreedImage(breedImage)
+            await likeBreedImage(breedImage)
         }
     }
 
-    private func likeBreedImage(_ breedImage: BreedImage) {
+    private func likeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
         let likedBreedImage = LikedBreedImage()
         likedBreedImage.breedName = breed.name
         likedBreedImage.imageURL = breedImage.image.absoluteString
-        repository.saveLikedBreedImageToRealm(likedBreedImage)
+        await repository.saveLikedBreedImageToRealm(likedBreedImage)
     }
 
-    private func unlikeBreedImage(_ breedImage: BreedImage) {
+    private func unlikeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
-        repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
+        await repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
     }
 
     func isImageLiked(_ breedImage: BreedImage?) -> Bool {
-        guard let breed = selectedBreed, let breedImage else { return false }
+        guard let breedImage else { return false }
         return likedBreedImages.contains(breedImage)
     }
 }
