@@ -32,6 +32,10 @@
 		015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763272B5BC7BB003F82F5 /* BreedImageCell.swift */; };
 		0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */; };
 		0157632E2B5BE689003F82F5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157632D2B5BE689003F82F5 /* MainCoordinator.swift */; };
+		015763312B5BF837003F82F5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 015763302B5BF837003F82F5 /* Realm */; };
+		015763332B5BF837003F82F5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 015763322B5BF837003F82F5 /* RealmSwift */; };
+		015763352B5BF848003F82F5 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763342B5BF848003F82F5 /* RealmService.swift */; };
+		015763372B5BF87F003F82F5 /* LikedBreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763362B5BF87F003F82F5 /* LikedBreedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,8 @@
 		015763272B5BC7BB003F82F5 /* BreedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageCell.swift; sourceTree = "<group>"; };
 		015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0157632D2B5BE689003F82F5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		015763342B5BF848003F82F5 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		015763362B5BF87F003F82F5 /* LikedBreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedBreedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015763332B5BF837003F82F5 /* RealmSwift in Frameworks */,
+				015763312B5BF837003F82F5 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,6 +186,7 @@
 				015763132B5A7E1D003F82F5 /* Breed.swift */,
 				0157631E2B5AF0DA003F82F5 /* BreedImagesResponse.swift */,
 				015763202B5AF274003F82F5 /* BreedImage.swift */,
+				015763362B5BF87F003F82F5 /* LikedBreedImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -196,6 +205,7 @@
 			children = (
 				015763062B5A701E003F82F5 /* NetworkKit */,
 				0157630F2B5A71FE003F82F5 /* BreedsRepository.swift */,
+				015763342B5BF848003F82F5 /* RealmService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -271,6 +281,10 @@
 			dependencies = (
 			);
 			name = "Dog Breeds";
+			packageProductDependencies = (
+				015763302B5BF837003F82F5 /* Realm */,
+				015763322B5BF837003F82F5 /* RealmSwift */,
+			);
 			productName = "Dog Breeds";
 			productReference = 015762CD2B5A6547003F82F5 /* Dog Breeds.app */;
 			productType = "com.apple.product-type.application";
@@ -343,6 +357,9 @@
 				Base,
 			);
 			mainGroup = 015762C42B5A6546003F82F5;
+			packageReferences = (
+				0157632F2B5BF837003F82F5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
 			productRefGroup = 015762CE2B5A6547003F82F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -387,6 +404,7 @@
 			files = (
 				0157631B2B5AC1AA003F82F5 /* BreedTableViewCell.swift in Sources */,
 				015763142B5A7E1D003F82F5 /* Breed.swift in Sources */,
+				015763372B5BF87F003F82F5 /* LikedBreedImage.swift in Sources */,
 				015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */,
 				015763212B5AF274003F82F5 /* BreedImage.swift in Sources */,
 				0157631D2B5AD0A4003F82F5 /* UIColor+Extensions.swift in Sources */,
@@ -401,6 +419,7 @@
 				015762D52B5A6547003F82F5 /* BreedListViewController.swift in Sources */,
 				015762D12B5A6547003F82F5 /* AppDelegate.swift in Sources */,
 				015763192B5A8B80003F82F5 /* BreedListViewModel.swift in Sources */,
+				015763352B5BF848003F82F5 /* RealmService.swift in Sources */,
 				015762D32B5A6547003F82F5 /* SceneDelegate.swift in Sources */,
 				015763232B5B0CB0003F82F5 /* BreedImageViewController.swift in Sources */,
 				015763172B5A8436003F82F5 /* Decodable+Extensions.swift in Sources */,
@@ -743,6 +762,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0157632F2B5BF837003F82F5 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		015763302B5BF837003F82F5 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0157632F2B5BF837003F82F5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		015763322B5BF837003F82F5 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0157632F2B5BF837003F82F5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 015762C52B5A6546003F82F5 /* Project object */;
 }
