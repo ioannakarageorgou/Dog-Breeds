@@ -29,6 +29,7 @@
 		015763212B5AF274003F82F5 /* BreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763202B5AF274003F82F5 /* BreedImage.swift */; };
 		015763232B5B0CB0003F82F5 /* BreedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */; };
 		015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */; };
+		015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763272B5BC7BB003F82F5 /* BreedImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		015763202B5AF274003F82F5 /* BreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImage.swift; sourceTree = "<group>"; };
 		015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewController.swift; sourceTree = "<group>"; };
 		015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewModel.swift; sourceTree = "<group>"; };
+		015763272B5BC7BB003F82F5 /* BreedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				015762D42B5A6547003F82F5 /* BreedListViewController.swift */,
 				0157631A2B5AC1AA003F82F5 /* BreedTableViewCell.swift */,
 				015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */,
+				015763272B5BC7BB003F82F5 /* BreedImageCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */,
 				0157630A2B5A7067003F82F5 /* NetworkConfig.swift in Sources */,
 				0157631F2B5AF0DA003F82F5 /* BreedImagesResponse.swift in Sources */,
+				015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */,
 				015762D52B5A6547003F82F5 /* BreedListViewController.swift in Sources */,
 				015762D12B5A6547003F82F5 /* AppDelegate.swift in Sources */,
 				015763192B5A8B80003F82F5 /* BreedListViewModel.swift in Sources */,
