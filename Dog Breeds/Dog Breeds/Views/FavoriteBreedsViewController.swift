@@ -13,7 +13,7 @@ class FavoriteBreedsViewController: UIViewController {
 
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = AppConstants.dogBreedsTitle
+        label.text = AppConstants.favoriteBreedsTitle
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
         label.textColor = .black
         label.textAlignment = .center

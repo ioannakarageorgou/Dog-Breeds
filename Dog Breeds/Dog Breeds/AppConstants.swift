@@ -19,6 +19,7 @@ struct AppConstants {
     static let dogBreedsTitle = "Dog Breeds"
     static let like = "Like"
     static let liked = "Liked"
+    static let favoriteBreedsTitle = "Favorite Breeds"
 
     // Colors
     static let primaryBackgroundColor = UIColor(hex: "#ededf2")
