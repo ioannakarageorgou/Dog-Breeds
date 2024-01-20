@@ -30,6 +30,7 @@
 		015763232B5B0CB0003F82F5 /* BreedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */; };
 		015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */; };
 		015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763272B5BC7BB003F82F5 /* BreedImageCell.swift */; };
+		0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewController.swift; sourceTree = "<group>"; };
 		015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewModel.swift; sourceTree = "<group>"; };
 		015763272B5BC7BB003F82F5 /* BreedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageCell.swift; sourceTree = "<group>"; };
+		015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 			children = (
 				015763162B5A8436003F82F5 /* Decodable+Extensions.swift */,
 				0157631C2B5AD0A4003F82F5 /* UIColor+Extensions.swift */,
+				015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */,
 				015763212B5AF274003F82F5 /* BreedImage.swift in Sources */,
 				0157631D2B5AD0A4003F82F5 /* UIColor+Extensions.swift in Sources */,
+				0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */,
 				015763102B5A71FE003F82F5 /* BreedsRepository.swift in Sources */,
 				0157630D2B5A70C7003F82F5 /* AppConstants.swift in Sources */,
 				015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */,

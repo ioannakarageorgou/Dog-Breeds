@@ -19,10 +19,11 @@ struct AppConstants {
     static let dogBreedsTitle = "Dog Breeds"
 
     // Colors
-    static let backgroundColor = UIColor(hex: "#ededf2")
-    static let cellBackgroundColor = UIColor(hex: "#f6f6f6")
-    static let heartColor = UIColor(hex: "#8e6048")
+    static let primaryBackgroundColor = UIColor(hex: "#ededf2")
+    static let secondaryBackgroundColor = UIColor(hex: "#f6f6f6")
+    static let customBrown = UIColor(hex: "#8e6048")
 
     // Images
     static let heartImageName = "heart"
+    static let defaultDogImageName = "default_dog"
 }

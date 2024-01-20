@@ -11,26 +11,27 @@ class BreedImageViewController: UIViewController {
     var viewModel: BreedImageViewModel!
     // TODO remove hardcoded value - just for test
     var selectedBreed: Breed? = Breed(name: "hound")
-
+    
     let breedNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }()
-
+    
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 120, height: 120)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
         collectionView.register(BreedImageCell.self, forCellWithReuseIdentifier: BreedImageCell.identifier)
+        collectionView.backgroundColor = AppConstants.secondaryBackgroundColor
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUpViewModel()
         setUpBindings()
         configureUI()
@@ -40,39 +41,38 @@ class BreedImageViewController: UIViewController {
 
 private extension BreedImageViewController {
     func configureUI() {
-        view.backgroundColor = AppConstants.backgroundColor
-
+        view.backgroundColor = AppConstants.primaryBackgroundColor
+        
         breedNameLabel.text = viewModel.selectedBreed?.name
         breedNameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(breedNameLabel)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
-
+        
         NSLayoutConstraint.activate([
             breedNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             breedNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             breedNameLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             breedNameLabel.heightAnchor.constraint(equalToConstant: 40),
-
+            
             collectionView.topAnchor.constraint(equalTo: breedNameLabel.bottomAnchor, constant: 16),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-
+    
     func setUpViewModel() {
         viewModel = BreedImageViewModel()
         viewModel.selectedBreed = selectedBreed
     }
-
+    
     func setUpBindings() {
         collectionView.delegate = self
         collectionView.dataSource = self
-
+        
         viewModel.breedImagesDidChange = { breedImages in
             if breedImages != nil {
-                print("did change")
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -81,7 +81,7 @@ private extension BreedImageViewController {
                 print("No images available.")
             }
         }
-
+        
         viewModel.networkErrorDidChange = { error in
             DispatchQueue.main.async {
                 // TODO Handle error state
@@ -89,7 +89,7 @@ private extension BreedImageViewController {
             }
         }
     }
-
+    
     func fetchData() {
         Task {
             await viewModel.fetchAllImages()
@@ -101,15 +101,11 @@ extension BreedImageViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.breedImages?.count ?? 0
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BreedImageCell.identifier, for: indexPath) as! BreedImageCell
         let breedImage = viewModel.breedImages?[indexPath.item]
         cell.configure(with: breedImage)
         return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
     }
 }

@@ -10,29 +10,45 @@ import UIKit
 class BreedListViewController: UIViewController {
     var viewModel: BreedListViewModel!
 
-    private var titleLabel: UILabel!
-    private var tableView: UITableView!
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = AppConstants.dogBreedsTitle
+        label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(BreedTableViewCell.self, forCellReuseIdentifier: BreedTableViewCell.identifier)
+        tableView.rowHeight = 60.0
+        tableView.backgroundColor = .clear
+        return tableView
+    }()
+
     private var loadingIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = AppConstants.backgroundColor
-        viewModel = BreedListViewModel()
 
+        setUpViewModel()
         setUpBindings()
-        configureTitleLabel()
-        configureFavoritesButton()
-        configureTable()
-        configureLoadingIndicator()
-
-        Task {
-            await viewModel.fetchAllDogBreeds()
-        }
+        configureUI()
+        fetchData()
     }
 }
 
 private extension BreedListViewController {
+    func setUpViewModel() {
+        viewModel = BreedListViewModel()
+    }
+
     func setUpBindings() {
+        tableView.delegate = self
+        tableView.dataSource = self
+
         viewModel.breedsDidChange = { breeds in
             if breeds != nil {
                 DispatchQueue.main.async {
@@ -54,15 +70,16 @@ private extension BreedListViewController {
         }
     }
 
-    func configureTable() {
-        tableView = UITableView(frame: view.bounds, style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(BreedTableViewCell.self, forCellReuseIdentifier: BreedTableViewCell.identifier)
-        tableView.rowHeight = 60.0
-        tableView.backgroundColor = .clear
-        view.addSubview(tableView)
+    func configureUI() {
+        view.backgroundColor = AppConstants.primaryBackgroundColor
+        configureTitleLabel()
+        configureFavoritesButton()
+        configureTable()
+        configureLoadingIndicator()
+    }
 
+    func configureTable() {
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
@@ -73,14 +90,7 @@ private extension BreedListViewController {
     }
 
     func configureTitleLabel() {
-        titleLabel = UILabel()
-        titleLabel.text = AppConstants.dogBreedsTitle
-        titleLabel.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-        titleLabel.textColor = .black
-        titleLabel.textAlignment = .center
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
-
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
@@ -98,7 +108,7 @@ private extension BreedListViewController {
             target: self,
             action: #selector(showFavorites)
         )
-        navigationItem.rightBarButtonItem?.tintColor = AppConstants.heartColor
+        navigationItem.rightBarButtonItem?.tintColor = AppConstants.customBrown
     }
 
     @objc private func showFavorites() {
@@ -111,6 +121,12 @@ private extension BreedListViewController {
         loadingIndicator.center = view.center
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
+    }
+
+    func fetchData() {
+        Task {
+            await viewModel.fetchAllDogBreeds()
+        }
     }
 }
 

@@ -35,12 +35,16 @@ class BreedImageCell: UICollectionViewCell {
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.lightGray.cgColor
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func configure(with breedImage: BreedImage?) {
-        imageView.image = UIImage(named: "default_dog")
+        if let imageURL = breedImage?.image {
+            imageView.load(url: imageURL)
+        } else {
+            imageView.image = UIImage(named: AppConstants.defaultDogImageName)
+        }
     }
 }
