@@ -14,9 +14,11 @@ protocol BreedsRepositoryProtocol {
 
 class BreedsRepository: BreedsRepositoryProtocol {
     private let networkManager: NetworkManagerProtocol
+    private var realmService: RealmServiceProtocol
 
-    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    init(networkManager: NetworkManagerProtocol = NetworkManager(), realmService: RealmServiceProtocol = RealmService()) {
         self.networkManager = networkManager
+        self.realmService = realmService
     }
 
     func fetchAllDogBreedsFromServer() async throws -> [Breed] {
@@ -75,6 +77,26 @@ class BreedsRepository: BreedsRepositoryProtocol {
             }
         } catch {
             throw error
+        }
+    }
+
+    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage) {
+        Task {
+            do {
+                try await realmService.saveLikedBreedImage(likedBreedImage)
+            } catch {
+                print("Error saving liked breed image to Realm: \(error)")
+            }
+        }
+    }
+
+    func removeLikedBreedImageFromRealm(_ breed: Breed, _ breedImage: BreedImage) {
+        Task {
+            do {
+                try await realmService.removeLikedBreedImage(for: breed, and: breedImage)
+            } catch {
+                print("Error removing liked breed image from Realm: \(error)")
+            }
         }
     }
 }

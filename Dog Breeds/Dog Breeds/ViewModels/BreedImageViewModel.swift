@@ -14,6 +14,12 @@ class BreedImageViewModel {
         }
     }
 
+    var likedBreedImages: [LikedBreedImage]? {
+        didSet {
+            likedBreedImagesDidChange?(likedBreedImages)
+        }
+    }
+
     var networkError: NetworkError? {
         didSet {
             networkErrorDidChange?(networkError)
@@ -22,6 +28,7 @@ class BreedImageViewModel {
 
     var selectedBreed: Breed?
     var breedImagesDidChange: (([BreedImage]?) -> Void)?
+    var likedBreedImagesDidChange: (([LikedBreedImage]?) -> Void)?
     var networkErrorDidChange: ((NetworkError?) -> Void)?
 
     private var repository: BreedsRepositoryProtocol
@@ -38,6 +45,19 @@ class BreedImageViewModel {
         } catch {
             self.networkError = error as? NetworkError
         }
+    }
+
+    func toggleLike(for breedImage: inout BreedImage) {
+        guard let breed = selectedBreed else { return }
+
+        breedImage.isLiked.toggle()
+        if breedImage.isLiked {
+            let likedBreedImage = LikedBreedImage(breed: breed, breedImage: breedImage)
+            saveLikedBreedImageToRealm(likedBreedImage)
+        } else {
+            removeLikedBreedImageFromRealm(breed, breedImage)
+        }
+        breedImagesDidChange?(breedImages)
     }
 }
 

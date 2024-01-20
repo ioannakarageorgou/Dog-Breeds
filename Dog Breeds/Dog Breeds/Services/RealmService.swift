@@ -9,7 +9,8 @@ import Foundation
 import RealmSwift
 
 protocol RealmServiceProtocol {
-    func save(_ likedBreedImages: [LikedBreedImage]) async throws
+    func saveLikedBreedImage(_ likedBreedImage: LikedBreedImage) async throws
+    func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async throws
     func fetchLikedBreedImages() async throws -> [LikedBreedImage]?
 }
 
@@ -19,11 +20,22 @@ class RealmService: RealmServiceProtocol {
     init(realm: Realm = try! Realm()) {
         self.realm = realm
     }
-
-    func save(_ likedBreedImages: [LikedBreedImage]) async throws {
+    
+    func saveLikedBreedImage(_ likedBreedImage: LikedBreedImage) async throws {
         try await MainActor.run {
             try realm.write {
-                realm.add(likedBreedImages, update: .modified)
+                realm.add(likedBreedImage)
+            }
+        }
+    }
+
+    func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async throws {
+        try await MainActor.run {
+            let predicate = NSPredicate(format: "breedName == %@ AND imageURL == %@", breed.name, breedImage.image.absoluteString)
+            if let likedBreedImage = realm.objects(LikedBreedImage.self).filter(predicate).first {
+                try realm.write {
+                    realm.delete(likedBreedImage)
+                }
             }
         }
     }
