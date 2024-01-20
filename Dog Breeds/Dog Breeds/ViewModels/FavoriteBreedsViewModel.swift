@@ -8,13 +8,13 @@
 import Foundation
 
 class FavoriteBreedsViewModel {
-    var likedBreedImages: [LikedBreedImage]? {
+    var likedBreedImages: [LikedBreed]? {
         didSet {
             likedBreedImagesDidChange?(likedBreedImages)
         }
     }
 
-    var likedBreedImagesDidChange: (([LikedBreedImage]?) -> Void)?
+    var likedBreedImagesDidChange: (([LikedBreed]?) -> Void)?
 
     private var repository: BreedsRepositoryProtocol
 

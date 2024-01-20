@@ -21,7 +21,7 @@ class BreedImageViewModel {
     }
 
     var selectedBreed: Breed?
-    private var likedBreedImages: [BreedImage] = []
+    private var likedBreedImages: [LikedBreed] = []
 
     var breedImagesDidChange: (([BreedImage]?) -> Void)?
     var networkErrorDidChange: ((NetworkError?) -> Void)?
@@ -42,7 +42,7 @@ class BreedImageViewModel {
 
             let combinedList = serverList.map { serverImage in
                 var breedImage = serverImage
-                breedImage.isLiked = likedList.contains { $0 == serverImage }
+                breedImage.isLiked = self.likedBreedImages.contains { $0.imageURL == serverImage.image.absoluteString }
                 return breedImage
             }
             self.breedImages = !combinedList.isEmpty ? combinedList : []
@@ -51,30 +51,19 @@ class BreedImageViewModel {
         }
     }
 
-    func likeBreedImage(at index: Int) async {
+    func tapLikeBreedImage(at index: Int) async {
         guard let breedImage = breedImages?[index] else { return }
-        if isImageLiked(breedImage) {
-            await unlikeBreedImage(breedImage)
-        } else {
-            await likeBreedImage(breedImage)
-        }
+        breedImage.isLiked ? await unlikeBreedImage(breedImage) : await likeBreedImage(breedImage)
     }
 
     private func likeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
-        let likedBreedImage = LikedBreedImage()
-        likedBreedImage.breedName = breed.name
-        likedBreedImage.imageURL = breedImage.image.absoluteString
+        let likedBreedImage = LikedBreed(imageURL: breedImage.image.absoluteString, breedName: breed.name)
         await repository.saveLikedBreedImageToRealm(likedBreedImage)
     }
 
     private func unlikeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
         await repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
-    }
-
-    func isImageLiked(_ breedImage: BreedImage?) -> Bool {
-        guard let breedImage else { return false }
-        return likedBreedImages.contains(breedImage)
     }
 }

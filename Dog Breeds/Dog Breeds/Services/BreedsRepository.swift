@@ -11,11 +11,11 @@ protocol BreedsRepositoryProtocol {
     func fetchAllDogBreedsFromServer() async throws -> [Breed]
     func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage]
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage) async
+    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreed) async
     func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async
 
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreedImage]
-    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage]
+    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreed]
+    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [LikedBreed]
 }
 
 class BreedsRepository: BreedsRepositoryProtocol {
@@ -87,7 +87,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage) async {
+    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreed) async {
         do {
             try await realmService.saveLikedBreedImage(likedBreedImage)
         } catch {
@@ -103,7 +103,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreedImage] {
+    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreed] {
         do {
             return try await realmService.fetchAllLikedBreedImages() ?? []
         } catch {
@@ -112,10 +112,9 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage] {
+    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [LikedBreed] {
         do {
-            let likedImages: [LikedBreedImage] = try await realmService.fetchLikedBreedImages(for: breed) ?? []
-            return likedImages.map { $0.toBreedImage() }
+            return try await realmService.fetchLikedBreedImages(for: breed) ?? []
         } catch {
             print("Error fetching liked breed images from Realm for breed \(breed.name): \(error)")
             throw error

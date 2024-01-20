@@ -35,7 +35,7 @@
 		015763312B5BF837003F82F5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 015763302B5BF837003F82F5 /* Realm */; };
 		015763332B5BF837003F82F5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 015763322B5BF837003F82F5 /* RealmSwift */; };
 		015763352B5BF848003F82F5 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763342B5BF848003F82F5 /* RealmService.swift */; };
-		015763372B5BF87F003F82F5 /* LikedBreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763362B5BF87F003F82F5 /* LikedBreedImage.swift */; };
+		015763372B5BF87F003F82F5 /* LikedBreed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763362B5BF87F003F82F5 /* LikedBreed.swift */; };
 		015763392B5C156A003F82F5 /* FavoriteBreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */; };
 		0157633B2B5C15F0003F82F5 /* FavoriteBreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */; };
 		0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */; };
@@ -89,7 +89,7 @@
 		015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0157632D2B5BE689003F82F5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		015763342B5BF848003F82F5 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
-		015763362B5BF87F003F82F5 /* LikedBreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedBreedImage.swift; sourceTree = "<group>"; };
+		015763362B5BF87F003F82F5 /* LikedBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedBreed.swift; sourceTree = "<group>"; };
 		015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewController.swift; sourceTree = "<group>"; };
 		0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedCell.swift; sourceTree = "<group>"; };
 		0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewModel.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				015763132B5A7E1D003F82F5 /* Breed.swift */,
 				0157631E2B5AF0DA003F82F5 /* BreedImagesResponse.swift */,
 				015763202B5AF274003F82F5 /* BreedImage.swift */,
-				015763362B5BF87F003F82F5 /* LikedBreedImage.swift */,
+				015763362B5BF87F003F82F5 /* LikedBreed.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 			files = (
 				0157631B2B5AC1AA003F82F5 /* BreedTableViewCell.swift in Sources */,
 				015763142B5A7E1D003F82F5 /* Breed.swift in Sources */,
-				015763372B5BF87F003F82F5 /* LikedBreedImage.swift in Sources */,
+				015763372B5BF87F003F82F5 /* LikedBreed.swift in Sources */,
 				015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */,
 				015763212B5AF274003F82F5 /* BreedImage.swift in Sources */,
 				0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */,

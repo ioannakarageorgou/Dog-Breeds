@@ -70,13 +70,13 @@ class BreedImageCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(with breedImage: BreedImage?, isLiked: Bool) {
+    func configure(with breedImage: BreedImage?) {
         if let imageURL = breedImage?.image {
             imageView.load(url: imageURL)
         } else {
             imageView.image = UIImage(named: AppConstants.defaultDogImageName)
         }
-        self.isLiked = isLiked
+        self.isLiked = breedImage?.isLiked ?? false
         updateLikeButton()
     }
 

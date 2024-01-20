@@ -100,7 +100,7 @@ extension BreedImageViewController: BreedImageCellDelegate {
     func didTapLikeButton(for cell: BreedImageCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
         Task {
-            await viewModel.likeBreedImage(at: indexPath.item)
+            await viewModel.tapLikeBreedImage(at: indexPath.item)
         }
     }
 }
@@ -113,8 +113,7 @@ extension BreedImageViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BreedImageCell.identifier, for: indexPath) as! BreedImageCell
         let breedImage = viewModel.breedImages?[indexPath.item]
-        let isLiked = viewModel.isImageLiked(breedImage)
-        cell.configure(with: breedImage, isLiked: isLiked)
+        cell.configure(with: breedImage)
         cell.delegate = self
         return cell
     }
