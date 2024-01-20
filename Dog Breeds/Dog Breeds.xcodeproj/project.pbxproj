@@ -31,6 +31,7 @@
 		015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */; };
 		015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763272B5BC7BB003F82F5 /* BreedImageCell.swift */; };
 		0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */; };
+		0157632E2B5BE689003F82F5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157632D2B5BE689003F82F5 /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewModel.swift; sourceTree = "<group>"; };
 		015763272B5BC7BB003F82F5 /* BreedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageCell.swift; sourceTree = "<group>"; };
 		015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		0157632D2B5BE689003F82F5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				015763002B5A6A23003F82F5 /* Views */,
 				015763022B5A6A31003F82F5 /* ViewModels */,
+				0157632B2B5BE672003F82F5 /* Coordinators */,
 				015763032B5A6A38003F82F5 /* Services */,
 				015763012B5A6A2C003F82F5 /* Models */,
 				0157630B2B5A70AE003F82F5 /* Utilities */,
@@ -242,6 +245,14 @@
 				015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0157632B2B5BE672003F82F5 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				0157632D2B5BE689003F82F5 /* MainCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +397,7 @@
 				0157630A2B5A7067003F82F5 /* NetworkConfig.swift in Sources */,
 				0157631F2B5AF0DA003F82F5 /* BreedImagesResponse.swift in Sources */,
 				015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */,
+				0157632E2B5BE689003F82F5 /* MainCoordinator.swift in Sources */,
 				015762D52B5A6547003F82F5 /* BreedListViewController.swift in Sources */,
 				015762D12B5A6547003F82F5 /* AppDelegate.swift in Sources */,
 				015763192B5A8B80003F82F5 /* BreedListViewModel.swift in Sources */,

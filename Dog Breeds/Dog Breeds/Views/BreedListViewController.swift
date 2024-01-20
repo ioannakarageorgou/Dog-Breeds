@@ -9,6 +9,7 @@ import UIKit
 
 class BreedListViewController: UIViewController {
     var viewModel: BreedListViewModel!
+    weak var coordinator: MainCoordinator?
 
     private var titleLabel: UILabel = {
         let label = UILabel()
@@ -134,7 +135,7 @@ extension BreedListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.breeds?.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BreedTableViewCell.identifier, for: indexPath) as! BreedTableViewCell
         cell.selectionStyle = .none
@@ -148,7 +149,9 @@ extension BreedListViewController: UITableViewDataSource {
 
 extension BreedListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO navigate to screen 2
+        if let selectedBreed = viewModel.breeds?[indexPath.row] {
+            coordinator?.showBreedImages(for: selectedBreed)
+        }
     }
 }
 
