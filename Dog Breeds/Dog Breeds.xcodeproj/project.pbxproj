@@ -39,6 +39,8 @@
 		015763392B5C156A003F82F5 /* FavoriteBreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */; };
 		0157633B2B5C15F0003F82F5 /* FavoriteBreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */; };
 		0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */; };
+		0157633F2B5C55F0003F82F5 /* RealmServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633E2B5C55F0003F82F5 /* RealmServiceTests.swift */; };
+		015763412B5C57D3003F82F5 /* MockRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763402B5C57D3003F82F5 /* MockRealmService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewController.swift; sourceTree = "<group>"; };
 		0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedCell.swift; sourceTree = "<group>"; };
 		0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewModel.swift; sourceTree = "<group>"; };
+		0157633E2B5C55F0003F82F5 /* RealmServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceTests.swift; sourceTree = "<group>"; };
+		015763402B5C57D3003F82F5 /* MockRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealmService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				015762E72B5A6549003F82F5 /* Dog_BreedsTests.swift */,
+				0157633E2B5C55F0003F82F5 /* RealmServiceTests.swift */,
+				015763402B5C57D3003F82F5 /* MockRealmService.swift */,
 			);
 			path = "Dog BreedsTests";
 			sourceTree = "<group>";
@@ -444,6 +450,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				015762E82B5A6549003F82F5 /* Dog_BreedsTests.swift in Sources */,
+				015763412B5C57D3003F82F5 /* MockRealmService.swift in Sources */,
+				0157633F2B5C55F0003F82F5 /* RealmServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
