@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BreedImage: Decodable, Identifiable {
+struct BreedImage: Decodable, Identifiable, Equatable {
     var id = UUID()
     let image: URL
     var isLiked: Bool = false

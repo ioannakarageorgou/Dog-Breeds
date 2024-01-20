@@ -14,12 +14,6 @@ class BreedImageViewModel {
         }
     }
 
-    var likedBreedImages: [LikedBreedImage]? {
-        didSet {
-            likedBreedImagesDidChange?(likedBreedImages)
-        }
-    }
-
     var networkError: NetworkError? {
         didSet {
             networkErrorDidChange?(networkError)
@@ -27,8 +21,9 @@ class BreedImageViewModel {
     }
 
     var selectedBreed: Breed?
+    private var likedBreedImages: [BreedImage] = []
+
     var breedImagesDidChange: (([BreedImage]?) -> Void)?
-    var likedBreedImagesDidChange: (([LikedBreedImage]?) -> Void)?
     var networkErrorDidChange: ((NetworkError?) -> Void)?
 
     private var repository: BreedsRepositoryProtocol
@@ -40,8 +35,17 @@ class BreedImageViewModel {
     func fetchAllImages() async {
         do {
             guard let breed = selectedBreed else { return }
-            let list = try await repository.fetchAllImagesFromServer(for: breed.name)
-            self.breedImages = !list.isEmpty ? list : []
+
+            let serverList = try await repository.fetchAllImagesFromServer(for: breed.name)
+            let likedList = try await repository.fetchLikedBreedImagesFromRealm(for: breed)
+            self.likedBreedImages = !likedList.isEmpty ? likedList : []
+
+            let combinedList = serverList.map { serverImage in
+                var breedImage = serverImage
+                breedImage.isLiked = likedList.contains { $0 == serverImage }
+                return breedImage
+            }
+            self.breedImages = !combinedList.isEmpty ? combinedList : []
         } catch {
             self.networkError = error as? NetworkError
         }
@@ -70,10 +74,7 @@ class BreedImageViewModel {
     }
 
     func isImageLiked(_ breedImage: BreedImage?) -> Bool {
-        guard let breed = selectedBreed, let likedImages = likedBreedImages, let breedImage else { return false }
-        let imageURLString = breedImage.image.absoluteString
-        return likedImages.contains { likedImage in
-            return likedImage.breedName == breed.name && likedImage.imageURL == imageURLString
-        }
+        guard let breed = selectedBreed, let breedImage else { return false }
+        return likedBreedImages.contains(breedImage)
     }
 }

@@ -99,8 +99,7 @@ private extension BreedImageViewController {
 extension BreedImageViewController: BreedImageCellDelegate {
     func didTapLikeButton(for cell: BreedImageCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        let breedImage = viewModel.breedImages?[indexPath.item]
-        collectionView.reloadItems(at: [indexPath])
+        viewModel.likeBreedImage(at: indexPath.item)
     }
 }
 
@@ -114,6 +113,7 @@ extension BreedImageViewController: UICollectionViewDelegate, UICollectionViewDa
         let breedImage = viewModel.breedImages?[indexPath.item]
         let isLiked = viewModel.isImageLiked(breedImage)
         cell.configure(with: breedImage, isLiked: isLiked)
+        cell.delegate = self
         return cell
     }
 }

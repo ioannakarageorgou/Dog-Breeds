@@ -10,8 +10,10 @@ import Foundation
 protocol BreedsRepositoryProtocol {
     func fetchAllDogBreedsFromServer() async throws -> [Breed]
     func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage]
+
     func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage)
     func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage)
+
     func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreedImage]
     func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage]
 }
