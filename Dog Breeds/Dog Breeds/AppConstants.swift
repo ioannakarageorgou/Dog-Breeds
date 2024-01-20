@@ -15,8 +15,10 @@ struct AppConstants {
     static let allBreedImagesUrlPath = "/breed/%@/images"
     static let success = "success"
 
-    // Titles
+    // Strings
     static let dogBreedsTitle = "Dog Breeds"
+    static let like = "Like"
+    static let liked = "Liked"
 
     // Colors
     static let primaryBackgroundColor = UIColor(hex: "#ededf2")
@@ -25,5 +27,6 @@ struct AppConstants {
 
     // Images
     static let heartImageName = "heart"
+    static let heartFillImageName = "heart.fill"
     static let defaultDogImageName = "default_dog"
 }
