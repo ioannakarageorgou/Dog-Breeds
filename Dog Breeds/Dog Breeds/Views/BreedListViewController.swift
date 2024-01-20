@@ -10,7 +10,7 @@ import UIKit
 class BreedListViewController: UIViewController {
     var viewModel: BreedListViewModel!
     weak var coordinator: MainCoordinator?
-
+    
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = AppConstants.dogBreedsTitle
@@ -20,7 +20,7 @@ class BreedListViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-
+    
     private var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(BreedTableViewCell.self, forCellReuseIdentifier: BreedTableViewCell.identifier)
@@ -28,12 +28,12 @@ class BreedListViewController: UIViewController {
         tableView.backgroundColor = .clear
         return tableView
     }()
-
+    
     private var loadingIndicator: UIActivityIndicatorView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUpViewModel()
         setUpBindings()
         configureUI()
@@ -45,11 +45,11 @@ private extension BreedListViewController {
     func setUpViewModel() {
         viewModel = BreedListViewModel()
     }
-
+    
     func setUpBindings() {
         tableView.delegate = self
         tableView.dataSource = self
-
+        
         viewModel.breedsDidChange = { breeds in
             if breeds != nil {
                 DispatchQueue.main.async {
@@ -61,7 +61,7 @@ private extension BreedListViewController {
                 print("No breeds available.")
             }
         }
-
+        
         viewModel.networkErrorDidChange = { error in
             DispatchQueue.main.async {
                 self.loadingIndicator.stopAnimating()
@@ -70,7 +70,7 @@ private extension BreedListViewController {
             }
         }
     }
-
+    
     func configureUI() {
         view.backgroundColor = AppConstants.primaryBackgroundColor
         configureTitleLabel()
@@ -78,7 +78,7 @@ private extension BreedListViewController {
         configureTable()
         configureLoadingIndicator()
     }
-
+    
     func configureTable() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +89,7 @@ private extension BreedListViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-
+    
     func configureTitleLabel() {
         view.addSubview(titleLabel)
         NSLayoutConstraint.activate([
@@ -99,7 +99,7 @@ private extension BreedListViewController {
             titleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-
+    
     func configureFavoritesButton() {
         let heartSymbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let heartImage = UIImage(systemName: AppConstants.heartImageName, withConfiguration: heartSymbolConfiguration)
@@ -111,19 +111,18 @@ private extension BreedListViewController {
         )
         navigationItem.rightBarButtonItem?.tintColor = AppConstants.customBrown
     }
-
+    
     @objc private func showFavorites() {
-        // TODO navigate to the favorites screen
-        print("Show Favorites tapped!")
+        coordinator?.showFavoriteBreeds()
     }
-
+    
     func configureLoadingIndicator() {
         loadingIndicator = UIActivityIndicatorView(style: .large)
         loadingIndicator.center = view.center
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
     }
-
+    
     func fetchData() {
         Task {
             await viewModel.fetchAllDogBreeds()
@@ -152,13 +151,5 @@ extension BreedListViewController: UITableViewDelegate {
         if let selectedBreed = viewModel.breeds?[indexPath.row] {
             coordinator?.showBreedImages(for: selectedBreed)
         }
-    }
-}
-
-extension BreedImageViewController: BreedImageCellDelegate {
-    func didTapLikeButton(for cell: BreedImageCell) {
-        guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        let breedImage = viewModel.breedImages?[indexPath.item]
-        collectionView.reloadItems(at: [indexPath])
     }
 }

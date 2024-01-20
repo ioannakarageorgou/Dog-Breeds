@@ -10,16 +10,17 @@ import UIKit
 
 protocol Coordinator: AnyObject {
     func showBreedImages(for breed: Breed)
+    func showFavoriteBreeds()
 }
 
 class MainCoordinator: Coordinator {
     private var navigationController: UINavigationController?
     private var window: UIWindow?
-    
+
     init(window: UIWindow?) {
         self.window = window
     }
-    
+
     func start() {
         let breedListViewController = BreedListViewController()
         breedListViewController.coordinator = self
@@ -27,10 +28,15 @@ class MainCoordinator: Coordinator {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
-    
+
     func showBreedImages(for breed: Breed) {
         let breedImageVC = BreedImageViewController()
         breedImageVC.selectedBreed = breed
         navigationController?.pushViewController(breedImageVC, animated: true)
+    }
+
+    func showFavoriteBreeds() {
+        let favoriteBreedsVC = FavoriteBreedsViewController()
+        navigationController?.pushViewController(favoriteBreedsVC, animated: true)
     }
 }

@@ -96,6 +96,14 @@ private extension BreedImageViewController {
     }
 }
 
+extension BreedImageViewController: BreedImageCellDelegate {
+    func didTapLikeButton(for cell: BreedImageCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        let breedImage = viewModel.breedImages?[indexPath.item]
+        collectionView.reloadItems(at: [indexPath])
+    }
+}
+
 extension BreedImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.breedImages?.count ?? 0
