@@ -13,6 +13,7 @@ class BreedListViewModel {
             breedsDidChange?(breeds)
         }
     }
+    
     var networkError: NetworkError? {
         didSet {
             networkErrorDidChange?(networkError)
