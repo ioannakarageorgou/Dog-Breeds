@@ -26,23 +26,10 @@ class FavoriteBreedCell: UICollectionViewCell {
         return label
     }()
 
-    let likeButton: UIButton = {
-        let button = UIButton()
-        button.tintColor = AppConstants.customBrown
-        let heartSymbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let heartImage = UIImage(systemName: AppConstants.heartImageName, withConfiguration: heartSymbolConfiguration)
-        button.setImage(heartImage, for: .normal)
-        button.setTitle(AppConstants.like, for: .normal)
-        button.setTitleColor(AppConstants.customBrown, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         contentView.addSubview(breedNameLabel)
-        contentView.addSubview(likeButton)
 
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -52,13 +39,8 @@ class FavoriteBreedCell: UICollectionViewCell {
 
             breedNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             breedNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            breedNameLabel.bottomAnchor.constraint(equalTo: likeButton.topAnchor, constant: -8),
+            breedNameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             breedNameLabel.heightAnchor.constraint(equalToConstant: 20),
-
-            likeButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            likeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-            likeButton.heightAnchor.constraint(equalToConstant: 24),
         ])
 
         contentView.layer.borderWidth = 0.4
