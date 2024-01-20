@@ -9,8 +9,7 @@ import UIKit
 
 class BreedImageViewController: UIViewController {
     var viewModel: BreedImageViewModel!
-    // TODO remove hardcoded value - just for test
-    var selectedBreed: Breed? = Breed(name: "hound")
+    var selectedBreed: Breed?
 
     let breedNameLabel: UILabel = {
         let label = UILabel()
@@ -105,7 +104,9 @@ extension BreedImageViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BreedImageCell.identifier, for: indexPath) as! BreedImageCell
         let breedImage = viewModel.breedImages?[indexPath.item]
-        cell.configure(with: breedImage)
+        let isLiked = viewModel.isImageLiked(breedImage)
+        cell.configure(with: breedImage, isLiked: isLiked)
+//        cell.delegate = self
         return cell
     }
 }

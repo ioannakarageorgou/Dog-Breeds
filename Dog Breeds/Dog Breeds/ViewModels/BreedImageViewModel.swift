@@ -35,6 +35,10 @@ class BreedImageViewModel {
 
     init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
         self.repository = repository
+        
+        Task {
+            await fetchLikedBreedImages()
+        }
     }
 
     func fetchAllImages() async {
@@ -46,5 +50,44 @@ class BreedImageViewModel {
             self.networkError = error as? NetworkError
         }
     }
-}
 
+    private func fetchLikedBreedImages() async {
+        do {
+            guard let breed = selectedBreed else { return }
+            let breedImages = try await repository.fetchAllLikedBreedImagesFromRealm()
+            likedBreedImages = breedImages.map { LikedBreedImage(breed: breed, breedImage: $0) }
+        } catch {
+            print("Error loading liked breed images: \(error)")
+        }
+    }
+
+    func likeBreedImage(at index: Int) {
+        guard let breedImage = breedImages?[index] else { return }
+        if isImageLiked(breedImage) {
+            unlikeBreedImage(breedImage)
+        } else {
+            likeBreedImage(breedImage)
+        }
+    }
+
+    private func likeBreedImage(_ breedImage: BreedImage) {
+        guard let breed = selectedBreed else { return }
+        let likedBreedImage = LikedBreedImage()
+        likedBreedImage.breedName = breed.name
+        likedBreedImage.imageURL = breedImage.image.absoluteString
+        repository.saveLikedBreedImageToRealm(likedBreedImage)
+    }
+
+    private func unlikeBreedImage(_ breedImage: BreedImage) {
+        guard let breed = selectedBreed else { return }
+        repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
+    }
+
+    func isImageLiked(_ breedImage: BreedImage?) -> Bool {
+        guard let breed = selectedBreed, let likedImages = likedBreedImages, let breedImage else { return false }
+        let imageURLString = breedImage.image.absoluteString
+        return likedImages.contains { likedImage in
+            return likedImage.breedName == breed.name && likedImage.imageURL == imageURLString
+        }
+    }
+}
