@@ -35,10 +35,6 @@ class BreedImageViewModel {
 
     init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
         self.repository = repository
-        
-        Task {
-            await fetchLikedBreedImages()
-        }
     }
 
     func fetchAllImages() async {
@@ -48,16 +44,6 @@ class BreedImageViewModel {
             self.breedImages = !list.isEmpty ? list : []
         } catch {
             self.networkError = error as? NetworkError
-        }
-    }
-
-    private func fetchLikedBreedImages() async {
-        do {
-            guard let breed = selectedBreed else { return }
-            let breedImages = try await repository.fetchAllLikedBreedImagesFromRealm()
-            likedBreedImages = breedImages.map { LikedBreedImage(breed: breed, breedImage: $0) }
-        } catch {
-            print("Error loading liked breed images: \(error)")
         }
     }
 

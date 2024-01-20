@@ -36,6 +36,9 @@
 		015763332B5BF837003F82F5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 015763322B5BF837003F82F5 /* RealmSwift */; };
 		015763352B5BF848003F82F5 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763342B5BF848003F82F5 /* RealmService.swift */; };
 		015763372B5BF87F003F82F5 /* LikedBreedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763362B5BF87F003F82F5 /* LikedBreedImage.swift */; };
+		015763392B5C156A003F82F5 /* FavoriteBreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */; };
+		0157633B2B5C15F0003F82F5 /* FavoriteBreedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */; };
+		0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		0157632D2B5BE689003F82F5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		015763342B5BF848003F82F5 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		015763362B5BF87F003F82F5 /* LikedBreedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedBreedImage.swift; sourceTree = "<group>"; };
+		015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewController.swift; sourceTree = "<group>"; };
+		0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedCell.swift; sourceTree = "<group>"; };
+		0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +181,8 @@
 				0157631A2B5AC1AA003F82F5 /* BreedTableViewCell.swift */,
 				015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */,
 				015763272B5BC7BB003F82F5 /* BreedImageCell.swift */,
+				015763382B5C156A003F82F5 /* FavoriteBreedsViewController.swift */,
+				0157633A2B5C15F0003F82F5 /* FavoriteBreedCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +204,7 @@
 			children = (
 				015763182B5A8B80003F82F5 /* BreedListViewModel.swift */,
 				015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */,
+				0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -407,8 +416,10 @@
 				015763372B5BF87F003F82F5 /* LikedBreedImage.swift in Sources */,
 				015763082B5A7030003F82F5 /* NetworkManager.swift in Sources */,
 				015763212B5AF274003F82F5 /* BreedImage.swift in Sources */,
+				0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */,
 				0157631D2B5AD0A4003F82F5 /* UIColor+Extensions.swift in Sources */,
 				0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */,
+				015763392B5C156A003F82F5 /* FavoriteBreedsViewController.swift in Sources */,
 				015763102B5A71FE003F82F5 /* BreedsRepository.swift in Sources */,
 				0157630D2B5A70C7003F82F5 /* AppConstants.swift in Sources */,
 				015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */,
@@ -421,6 +432,7 @@
 				015763192B5A8B80003F82F5 /* BreedListViewModel.swift in Sources */,
 				015763352B5BF848003F82F5 /* RealmService.swift in Sources */,
 				015762D32B5A6547003F82F5 /* SceneDelegate.swift in Sources */,
+				0157633B2B5C15F0003F82F5 /* FavoriteBreedCell.swift in Sources */,
 				015763232B5B0CB0003F82F5 /* BreedImageViewController.swift in Sources */,
 				015763172B5A8436003F82F5 /* Decodable+Extensions.swift in Sources */,
 				015763122B5A74BD003F82F5 /* BreedsListResponse.swift in Sources */,

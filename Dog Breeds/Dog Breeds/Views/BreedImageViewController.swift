@@ -106,7 +106,6 @@ extension BreedImageViewController: UICollectionViewDelegate, UICollectionViewDa
         let breedImage = viewModel.breedImages?[indexPath.item]
         let isLiked = viewModel.isImageLiked(breedImage)
         cell.configure(with: breedImage, isLiked: isLiked)
-//        cell.delegate = self
         return cell
     }
 }

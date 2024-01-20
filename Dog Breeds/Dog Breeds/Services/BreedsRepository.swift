@@ -12,7 +12,7 @@ protocol BreedsRepositoryProtocol {
     func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage]
     func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreedImage)
     func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage)
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [BreedImage]
+    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreedImage]
     func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [BreedImage]
 }
 
@@ -105,10 +105,9 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [BreedImage] {
+    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreedImage] {
         do {
-            let likedImages: [LikedBreedImage] = try await realmService.fetchAllLikedBreedImages() ?? []
-            return likedImages.map { $0.toBreedImage() }
+            return try await realmService.fetchAllLikedBreedImages() ?? []
         } catch {
             print("Error fetching all liked breed images from Realm: \(error)")
             throw error
