@@ -10,7 +10,6 @@ import XCTest
 @testable import Dog_Breeds
 
 class BreedsRepositoryTests: XCTestCase {
-
     var repository: BreedsRepository!
     var mockNetworkManager: MockNetworkManager!
     var mockRealmService: MockRealmService!
