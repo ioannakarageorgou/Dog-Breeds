@@ -46,6 +46,7 @@
 		015763482B5D153B003F82F5 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763472B5D153B003F82F5 /* MockNetworkManager.swift */; };
 		0157634B2B5D1A43003F82F5 /* BreedListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634A2B5D1A43003F82F5 /* BreedListViewModelTests.swift */; };
 		0157634D2B5D1D32003F82F5 /* BreedImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634C2B5D1D32003F82F5 /* BreedImageViewModelTests.swift */; };
+		0157634F2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634E2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		015763472B5D153B003F82F5 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		0157634A2B5D1A43003F82F5 /* BreedListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedListViewModelTests.swift; sourceTree = "<group>"; };
 		0157634C2B5D1D32003F82F5 /* BreedImageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewModelTests.swift; sourceTree = "<group>"; };
+		0157634E2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 				015763452B5D14B7003F82F5 /* BreedsRepositoryTests.swift */,
 				0157634A2B5D1A43003F82F5 /* BreedListViewModelTests.swift */,
 				0157634C2B5D1D32003F82F5 /* BreedImageViewModelTests.swift */,
+				0157634E2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift */,
 			);
 			path = "Dog BreedsTests";
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				015763432B5D1381003F82F5 /* MockBreedsRepository.swift in Sources */,
 				015763462B5D14B7003F82F5 /* BreedsRepositoryTests.swift in Sources */,
 				015762E82B5A6549003F82F5 /* Dog_BreedsTests.swift in Sources */,
+				0157634F2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift in Sources */,
 				015763412B5C57D3003F82F5 /* MockRealmService.swift in Sources */,
 				0157634D2B5D1D32003F82F5 /* BreedImageViewModelTests.swift in Sources */,
 				0157633F2B5C55F0003F82F5 /* RealmServiceTests.swift in Sources */,
