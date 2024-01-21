@@ -41,6 +41,9 @@
 		0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */; };
 		0157633F2B5C55F0003F82F5 /* RealmServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157633E2B5C55F0003F82F5 /* RealmServiceTests.swift */; };
 		015763412B5C57D3003F82F5 /* MockRealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763402B5C57D3003F82F5 /* MockRealmService.swift */; };
+		015763432B5D1381003F82F5 /* MockBreedsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763422B5D1380003F82F5 /* MockBreedsRepository.swift */; };
+		015763462B5D14B7003F82F5 /* BreedsRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763452B5D14B7003F82F5 /* BreedsRepositoryTests.swift */; };
+		015763482B5D153B003F82F5 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763472B5D153B003F82F5 /* MockNetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		0157633C2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewModel.swift; sourceTree = "<group>"; };
 		0157633E2B5C55F0003F82F5 /* RealmServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmServiceTests.swift; sourceTree = "<group>"; };
 		015763402B5C57D3003F82F5 /* MockRealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRealmService.swift; sourceTree = "<group>"; };
+		015763422B5D1380003F82F5 /* MockBreedsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBreedsRepository.swift; sourceTree = "<group>"; };
+		015763452B5D14B7003F82F5 /* BreedsRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsRepositoryTests.swift; sourceTree = "<group>"; };
+		015763472B5D153B003F82F5 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,9 @@
 				015762E72B5A6549003F82F5 /* Dog_BreedsTests.swift */,
 				0157633E2B5C55F0003F82F5 /* RealmServiceTests.swift */,
 				015763402B5C57D3003F82F5 /* MockRealmService.swift */,
+				015763422B5D1380003F82F5 /* MockBreedsRepository.swift */,
+				015763452B5D14B7003F82F5 /* BreedsRepositoryTests.swift */,
+				015763472B5D153B003F82F5 /* MockNetworkManager.swift */,
 			);
 			path = "Dog BreedsTests";
 			sourceTree = "<group>";
@@ -449,6 +458,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				015763482B5D153B003F82F5 /* MockNetworkManager.swift in Sources */,
+				015763432B5D1381003F82F5 /* MockBreedsRepository.swift in Sources */,
+				015763462B5D14B7003F82F5 /* BreedsRepositoryTests.swift in Sources */,
 				015762E82B5A6549003F82F5 /* Dog_BreedsTests.swift in Sources */,
 				015763412B5C57D3003F82F5 /* MockRealmService.swift in Sources */,
 				0157633F2B5C55F0003F82F5 /* RealmServiceTests.swift in Sources */,
