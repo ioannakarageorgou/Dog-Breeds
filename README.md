@@ -4,6 +4,8 @@
 
 The Dog Breeds app is designed to showcase various dog breeds, allowing users to explore images of different breeds and save their favorite ones.
 
+![](https://github.com/shape-interviews/ios-take-home-ioannakarageorgou/blob/develop/Dog%20Breeds/Recorded%20Gif/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202024-01-21%20at%2012.02.38.gif)
+
 ## Project Structure
 
 ### Main Components
@@ -55,7 +57,4 @@ The Dog Breeds app is designed to showcase various dog breeds, allowing users to
 - **Realm Database**
   - Used for local storage of liked breed images.
 
-## Recorded Gif Video
-
-![](https://github.com/shape-interviews/ios-take-home-ioannakarageorgou/blob/develop/Dog%20Breeds/Recorded%20Gif/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202024-01-21%20at%2012.02.38.gif)
 
