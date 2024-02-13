@@ -1,47 +1,61 @@
-# iOS Technical Take-Home 
+# Dog Breeds App
 
-This document describes the assignment to be completed by candidates interviewing for an iOS position at [Shape](https://shape.dk).
+## Overview
 
-👀 **Check out [our profile](https://github.com/shape-interviews) to better understand our technical interview process and the criteria we use to evaluate our candidates.**
+The Dog Breeds app is designed to showcase various dog breeds, allowing users to explore images of different breeds and save their favorite ones.
 
-## 🎯 Task
+## Project Structure
 
-You need to develop an app that would use the Dog Breeds API to allow users to browse through the list of dog breeds, their pictures, and add pictures to favorites.
+### Main Components
 
-> **⚠️ Important Note**
-> 
-> The purpose of this task is for you to demonstrate your skill level. It would thus help if you were to **avoid** using frameworks for **networking** and for **images loading** (e.g.: Alamofire, Kingfisher, SDWebImage etc). That is, however, not a requirement, and you should feel free to use them; especially if you couldn't otherwise solve these tasks yourself.
+- **BreedListViewController**
+  - Displays a list of dog breeds.
+  - Coordinates with the `MainCoordinator` to navigate to breed images or favorite breeds.
 
-## 📱 App Structure
+- **BreedImageViewController**
+  - Shows images of a specific dog breed.
+  - Allows users to like or unlike images.
 
-We expect your app to have three screens with following features:
+- **FavoriteBreedsViewController**
+  - Displays a list of user-liked dog breeds.
 
-### 1. List of Breeds
+- **MainCoordinator**
+  - Acts as the coordinator to manage navigation flow between different view controllers.
 
-- Shows the list of available breeds.
-- Navigates the app to screen 2 when the user taps any of the breeds.
-- Has "favorites" button that navigates the app to the screen [described in **3**]().
+- **BreedListViewModel**
+  - Handles the logic related to the list of dog breeds.
 
-### 2. Breed Pictures
+- **BreedImageViewModel**
+  - Manages logic for fetching and displaying breed images.
 
-- Shows all the available pictures of a given breed.
-- Allows users to like/unlike specific images by tapping the image or a like button.
+- **FavoriteBreedsViewModel**
+  - Handles logic for fetching and displaying liked breed images.
 
-### 3. Favorite Pictures
+- **RealmService**
+  - Interacts with the Realm database for storing and retrieving liked breed images.
 
-- Shows the images that the user liked.
-- Shows which breed a particular image belongs to.
-- Allows user to filter images by selecting a breed.
+- **BreedsRepository**
+  - Acts as an interface for fetching dog breeds and images, as well as saving and removing liked breed images.
 
-## 📋 Requirements
+- **NetworkManager**
+  - Responsible for making network requests.
 
-- You should use the following API: https://dog.ceo/dog-api
-- Your app should be written in Swift.
-- We encourage you to use UIKit, which is what we use in most of our projects at Shape.
+### Patterns Used
 
-## 💻 Practicalities
+- **Coordinator Pattern**
+  - Implemented through the `MainCoordinator` class to manage navigation.
 
-- We are not expecting you to spend more than 1 day (or 8 hours) on this task, but this is not a strict limitation. Feel free to exceed that time, if you feel like it.
-- Rest assured that we are equally happy to evaluate an incomplete solution. We will only have less material to review, in such instance.
-- Once your task is ready, please push it to this repository.
-- Be prepared to the possibility to showcase your solution during a technical interview. In that case, you would be asked to run the app and show your solution from the user perspective, as well as to present the codebase, highlighting the most compelling parts of the solution, before answering ad-hoc questions concerning your app.
+- **MVVM (Model-View-ViewModel) Pattern**
+  - View controllers (View) communicate with view models (ViewModel) to update UI.
+  - View models handle the business logic and interact with repositories.
+
+- **Repository Pattern**
+  - `BreedsRepository` abstracts the data access layer, providing a clear interface for fetching and saving data.
+
+- **Realm Database**
+  - Used for local storage of liked breed images.
+
+## Recorded Gif Video
+
+![](https://github.com/shape-interviews/ios-take-home-ioannakarageorgou/blob/develop/Dog%20Breeds/Recorded%20Gif/Simulator%20Screen%20Recording%20-%20iPhone%2015%20Pro%20-%202024-01-21%20at%2012.02.38.gif)
+
