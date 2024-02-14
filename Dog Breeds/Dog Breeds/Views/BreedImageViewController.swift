@@ -30,11 +30,15 @@ class BreedImageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpViewModel()
         setUpBindings()
         configureUI()
         fetchData()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.cancelTasks()
     }
 }
 
@@ -72,9 +76,7 @@ private extension BreedImageViewController {
 
         viewModel.breedImagesDidChange = { breedImages in
             if breedImages != nil {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+                self.collectionView.reloadData()
             } else {
                 // TODO Handle empty state
                 print("No images available.")
@@ -82,26 +84,20 @@ private extension BreedImageViewController {
         }
 
         viewModel.networkErrorDidChange = { error in
-            DispatchQueue.main.async {
-                // TODO Handle error state
-                print("Network error: \(error?.localizedDescription ?? "Unknown error")")
-            }
+            // TODO Handle error state
+            print("Network error: \(error?.localizedDescription ?? "Unknown error")")
         }
     }
 
     func fetchData() {
-        Task {
-            await viewModel.fetchAllImages()
-        }
+        viewModel.fetchAllImages()
     }
 }
 
 extension BreedImageViewController: BreedImageCellDelegate {
     func didTapLikeButton(for cell: BreedImageCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        Task {
-            await viewModel.tapLikeBreedImage(at: indexPath.item)
-        }
+        viewModel.tapLikeBreedImage(at: indexPath.item)
     }
 }
 

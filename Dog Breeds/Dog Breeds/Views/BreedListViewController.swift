@@ -10,7 +10,7 @@ import UIKit
 class BreedListViewController: UIViewController {
     var viewModel: BreedListViewModel!
     weak var coordinator: MainCoordinator?
-    
+
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = AppConstants.dogBreedsTitle
@@ -20,7 +20,7 @@ class BreedListViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(BreedTableViewCell.self, forCellReuseIdentifier: BreedTableViewCell.identifier)
@@ -28,16 +28,20 @@ class BreedListViewController: UIViewController {
         tableView.backgroundColor = .clear
         return tableView
     }()
-    
+
     private var loadingIndicator: UIActivityIndicatorView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setUpViewModel()
         setUpBindings()
         configureUI()
         fetchData()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.cancelTasks()
     }
 }
 
@@ -45,32 +49,29 @@ private extension BreedListViewController {
     func setUpViewModel() {
         viewModel = BreedListViewModel()
     }
-    
+
     func setUpBindings() {
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         viewModel.breedsDidChange = { breeds in
             if breeds != nil {
-                DispatchQueue.main.async {
-                    self.loadingIndicator.stopAnimating()
-                    self.tableView.reloadData()
-                }
+                self.loadingIndicator.stopAnimating()
+                self.tableView.reloadData()
             } else {
                 // TODO Handle empty state
                 print("No breeds available.")
             }
         }
-        
+
         viewModel.networkErrorDidChange = { error in
-            DispatchQueue.main.async {
-                self.loadingIndicator.stopAnimating()
-                // TODO Handle error state
-                print("Network error: \(error?.localizedDescription ?? "Unknown error")")
-            }
+            self.loadingIndicator.stopAnimating()
+            // TODO Handle error state
+            print("Network error: \(error?.localizedDescription ?? "Unknown error")")
+
         }
     }
-    
+
     func configureUI() {
         view.backgroundColor = AppConstants.primaryBackgroundColor
         configureTitleLabel()
@@ -78,7 +79,7 @@ private extension BreedListViewController {
         configureTable()
         configureLoadingIndicator()
     }
-    
+
     func configureTable() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +90,7 @@ private extension BreedListViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-    
+
     func configureTitleLabel() {
         view.addSubview(titleLabel)
         NSLayoutConstraint.activate([
@@ -99,7 +100,7 @@ private extension BreedListViewController {
             titleLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
+
     func configureFavoritesButton() {
         let heartSymbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let heartImage = UIImage(systemName: AppConstants.heartImageName, withConfiguration: heartSymbolConfiguration)
@@ -111,22 +112,20 @@ private extension BreedListViewController {
         )
         navigationItem.rightBarButtonItem?.tintColor = AppConstants.customBrown
     }
-    
+
     @objc private func showFavorites() {
         coordinator?.showFavoriteBreeds()
     }
-    
+
     func configureLoadingIndicator() {
         loadingIndicator = UIActivityIndicatorView(style: .large)
         loadingIndicator.center = view.center
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
     }
-    
+
     func fetchData() {
-        Task {
-            await viewModel.fetchAllDogBreeds()
-        }
+        viewModel.fetchAllDogBreeds()
     }
 }
 
@@ -134,7 +133,7 @@ extension BreedListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.breeds?.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BreedTableViewCell.identifier, for: indexPath) as! BreedTableViewCell
         cell.selectionStyle = .none

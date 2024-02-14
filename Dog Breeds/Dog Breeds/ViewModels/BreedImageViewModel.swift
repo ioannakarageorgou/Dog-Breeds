@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class BreedImageViewModel {
     var breedImages: [BreedImage]? {
         didSet {
@@ -21,39 +22,46 @@ class BreedImageViewModel {
     }
 
     var selectedBreed: Breed?
+
     private var likedBreedImages: [LikedBreed] = []
+    private var repository: BreedsRepositoryProtocol
+    private var tasks: [Task<Void, Never>] = []
 
     var breedImagesDidChange: (([BreedImage]?) -> Void)?
     var networkErrorDidChange: ((NetworkError?) -> Void)?
-
-    private var repository: BreedsRepositoryProtocol
 
     init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
         self.repository = repository
     }
 
-    func fetchAllImages() async {
-        do {
-            guard let breed = selectedBreed else { return }
+    func fetchAllImages() {
+        let task = Task {
+            do {
+                guard let breed = selectedBreed else { return }
 
-            let serverList = try await repository.fetchAllImagesFromServer(for: breed.name)
-            let likedList = try await repository.fetchLikedBreedImagesFromRealm(for: breed)
-            self.likedBreedImages = !likedList.isEmpty ? likedList : []
+                let serverList = try await repository.fetchAllImagesFromServer(for: breed.name)
+                let likedList = try await repository.fetchLikedBreedImagesFromRealm(for: breed)
+                self.likedBreedImages = !likedList.isEmpty ? likedList : []
 
-            let combinedList = serverList.map { serverImage in
-                var breedImage = serverImage
-                breedImage.isLiked = self.likedBreedImages.contains { $0.imageURL == serverImage.image.absoluteString }
-                return breedImage
+                let combinedList = serverList.map { serverImage in
+                    var breedImage = serverImage
+                    breedImage.isLiked = self.likedBreedImages.contains { $0.imageURL == serverImage.image.absoluteString }
+                    return breedImage
+                }
+                self.breedImages = !combinedList.isEmpty ? combinedList : []
+            } catch {
+                self.networkError = error as? NetworkError
             }
-            self.breedImages = !combinedList.isEmpty ? combinedList : []
-        } catch {
-            self.networkError = error as? NetworkError
         }
+        tasks.append(task)
     }
 
-    func tapLikeBreedImage(at index: Int) async {
-        guard let breedImage = breedImages?[index] else { return }
-        breedImage.isLiked ? await unlikeBreedImage(breedImage) : await likeBreedImage(breedImage)
+    func tapLikeBreedImage(at index: Int) {
+        let task = Task {
+            guard let breedImage = breedImages?[index] else { return }
+            breedImage.isLiked ? await unlikeBreedImage(breedImage) : await likeBreedImage(breedImage)
+        }
+        tasks.append(task)
     }
 
     private func likeBreedImage(_ breedImage: BreedImage) async {
@@ -61,9 +69,14 @@ class BreedImageViewModel {
         let likedBreedImage = LikedBreed(imageURL: breedImage.image.absoluteString, breedName: breed.name)
         await repository.saveLikedBreedImageToRealm(likedBreedImage)
     }
-
+    
     private func unlikeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
         await repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
+    }
+
+    func cancelTasks() {
+        tasks.forEach({ $0.cancel() })
+        tasks = []
     }
 }

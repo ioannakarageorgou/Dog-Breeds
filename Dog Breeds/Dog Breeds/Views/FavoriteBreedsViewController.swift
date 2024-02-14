@@ -33,11 +33,15 @@ class FavoriteBreedsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpViewModel()
         setUpBindings()
         configureUI()
         fetchData()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.cancelTasks()
     }
 }
 
@@ -72,9 +76,7 @@ private extension FavoriteBreedsViewController {
 
         viewModel.likedBreedImagesDidChange = { likedImages in
             if likedImages != nil {
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
+                self.collectionView.reloadData()
             } else {
                 // TODO Handle empty state
                 print("No liked images available.")
@@ -83,9 +85,7 @@ private extension FavoriteBreedsViewController {
     }
 
     func fetchData() {
-        Task {
-            await viewModel.fetchLikedBreedImages()
-        }
+        viewModel.fetchLikedBreedImages()
     }
 }
 

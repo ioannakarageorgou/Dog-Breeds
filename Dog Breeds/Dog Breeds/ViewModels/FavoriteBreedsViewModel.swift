@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class FavoriteBreedsViewModel {
     var likedBreedImages: [LikedBreed]? {
         didSet {
@@ -17,17 +18,26 @@ class FavoriteBreedsViewModel {
     var likedBreedImagesDidChange: (([LikedBreed]?) -> Void)?
 
     private var repository: BreedsRepositoryProtocol
+    private var tasks: [Task<Void, Never>] = []
 
     init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
         self.repository = repository
     }
 
-    func fetchLikedBreedImages() async {
-        do {
-            let breedImages = try await repository.fetchAllLikedBreedImagesFromRealm()
-            self.likedBreedImages = breedImages
-        } catch {
-            print("Error loading liked breed images: \(error)")
+    func fetchLikedBreedImages() {
+        let task = Task {
+            do {
+                let breedImages = try await repository.fetchAllLikedBreedImagesFromRealm()
+                self.likedBreedImages = breedImages
+            } catch {
+                print("Error loading liked breed images: \(error)")
+            }
         }
+        tasks.append(task)
+    }
+
+    func cancelTasks() {
+        tasks.forEach({ $0.cancel() })
+        tasks = []
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class BreedListViewModel {
     var breeds: [Breed]? {
         didSet {
@@ -24,17 +25,26 @@ class BreedListViewModel {
     var networkErrorDidChange: ((NetworkError?) -> Void)?
 
     private var repository: BreedsRepositoryProtocol
+    private var tasks: [Task<Void, Never>] = []
 
     init(repository: BreedsRepositoryProtocol = BreedsRepository()) {
         self.repository = repository
     }
 
-    func fetchAllDogBreeds() async {
-        do {
-            let list = try await repository.fetchAllDogBreedsFromServer()
-            self.breeds = !list.isEmpty ? list.sorted() : []
-        } catch {
-            self.networkError = error as? NetworkError
+    func fetchAllDogBreeds() {
+        let task = Task {
+            do {
+                let list = try await repository.fetchAllDogBreedsFromServer()
+                self.breeds = !list.isEmpty ? list.sorted() : []
+            } catch {
+                self.networkError = error as? NetworkError
+            }
         }
+        tasks.append(task)
+    }
+
+    func cancelTasks() {
+        tasks.forEach({ $0.cancel() })
+        tasks = []
     }
 }
