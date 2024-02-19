@@ -27,7 +27,7 @@ class FavoriteBreedsViewModel {
     func fetchLikedBreedImages() {
         let task = Task {
             do {
-                let breedImages = try await repository.fetchAllLikedBreedImagesFromRealm()
+                let breedImages = try await repository.fetchAllLikedBreedImages()
                 self.likedBreedImages = breedImages
             } catch {
                 print("Error loading liked breed images: \(error)")

@@ -34,7 +34,7 @@ class BreedsRepositoryTests: XCTestCase {
         mockNetworkManager.mockResult = .success(mockResponse)
 
         do {
-            let result = try await repository.fetchAllDogBreedsFromServer()
+            let result = try await repository.fetchAllDogBreeds()
 
             XCTAssertEqual(result.count, 2)
             XCTAssertEqual(result[0].name, "Breed1")
@@ -50,7 +50,7 @@ class BreedsRepositoryTests: XCTestCase {
         mockNetworkManager.mockResult = .success(mockResponse)
 
         do {
-            let result = try await repository.fetchAllImagesFromServer(for: "Breed1")
+            let result = try await repository.fetchAllImages(for: "Breed1")
 
             XCTAssertEqual(result.count, 2)
             XCTAssertEqual(result[0].image.absoluteString, "Image1")
@@ -62,7 +62,7 @@ class BreedsRepositoryTests: XCTestCase {
 
     func testSaveLikedBreedImageToRealm_Success() async {
         do {
-            await repository.saveLikedBreedImageToRealm(LikedBreed(imageURL: "Image1", breedName: "Breed1"))
+            await repository.saveLikedBreedImage(LikedBreed(imageURL: "Image1", breedName: "Breed1"))
             let likedBreedImages = try await mockRealmService.fetchAllLikedBreedImages()
 
             XCTAssertEqual(likedBreedImages?.count, 1)
@@ -79,7 +79,7 @@ class BreedsRepositoryTests: XCTestCase {
         try? await mockRealmService.saveLikedBreedImage(LikedBreed(imageURL: "Image1", breedName: "Breed1"))
 
         do {
-            await repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
+            await repository.removeLikedBreedImage(for: breed, and: breedImage)
             let likedBreedImages = try await mockRealmService.fetchAllLikedBreedImages()
             XCTAssertTrue(likedBreedImages?.isEmpty ?? true)
         } catch {
@@ -88,7 +88,7 @@ class BreedsRepositoryTests: XCTestCase {
     }
 
     class MockBreedsRepository: BreedsRepository {
-        override func fetchAllDogBreedsFromServer() async throws -> [Breed] {
+        override func fetchAllDogBreeds() async throws -> [Breed] {
             return [Breed(name: "MockBreed1"), Breed(name: "MockBreed2")]
         }
     }

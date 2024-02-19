@@ -8,14 +8,14 @@
 import Foundation
 
 protocol BreedsRepositoryProtocol {
-    func fetchAllDogBreedsFromServer() async throws -> [Breed]
-    func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage]
+    func fetchAllDogBreeds() async throws -> [Breed]
+    func fetchAllImages(for breed: String) async throws -> [BreedImage]
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreed) async
-    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async
+    func saveLikedBreedImage(_ likedBreedImage: LikedBreed) async
+    func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async
 
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreed]
-    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [LikedBreed]
+    func fetchAllLikedBreedImages() async throws -> [LikedBreed]
+    func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreed]
 }
 
 class BreedsRepository: BreedsRepositoryProtocol {
@@ -28,7 +28,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         self.realmService = realmService
     }
 
-    func fetchAllDogBreedsFromServer() async throws -> [Breed] {
+    func fetchAllDogBreeds() async throws -> [Breed] {
         let resource = RequestConfig.Resource<BreedsListResponse?>(
             urlPath: AppConstants.allDogBreedsUrlPath,
             method: .get
@@ -57,7 +57,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage] {
+    func fetchAllImages(for breed: String) async throws -> [BreedImage] {
         let resource = RequestConfig.Resource<BreedImagesResponse?>(
             urlPath: String(format: AppConstants.allBreedImagesUrlPath, breed),
             method: .get
@@ -87,7 +87,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreed) async {
+    func saveLikedBreedImage(_ likedBreedImage: LikedBreed) async {
         do {
             try await realmService.saveLikedBreedImage(likedBreedImage)
         } catch {
@@ -95,7 +95,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async {
+    func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async {
         do {
             try await realmService.removeLikedBreedImage(for: breed, and: breedImage)
         } catch {
@@ -103,7 +103,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreed] {
+    func fetchAllLikedBreedImages() async throws -> [LikedBreed] {
         do {
             return try await realmService.fetchAllLikedBreedImages() ?? []
         } catch {
@@ -112,7 +112,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [LikedBreed] {
+    func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreed] {
         do {
             return try await realmService.fetchLikedBreedImages(for: breed) ?? []
         } catch {

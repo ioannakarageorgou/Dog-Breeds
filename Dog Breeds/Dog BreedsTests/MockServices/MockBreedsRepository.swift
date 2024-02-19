@@ -15,7 +15,7 @@ class MockBreedsRepository: BreedsRepositoryProtocol {
     var mockBreedImages: [BreedImage]?
     var mockLikedBreedImages: [LikedBreed]?
 
-    func fetchAllDogBreedsFromServer() async throws -> [Breed] {
+    func fetchAllDogBreeds() async throws -> [Breed] {
         if let mockDogBreeds = mockDogBreeds {
             return mockDogBreeds
         } else {
@@ -23,7 +23,7 @@ class MockBreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchAllImagesFromServer(for breed: String) async throws -> [BreedImage] {
+    func fetchAllImages(for breed: String) async throws -> [BreedImage] {
         if let mockBreedImages = mockBreedImages {
             return mockBreedImages
         } else {
@@ -31,7 +31,7 @@ class MockBreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreed) async {
+    func saveLikedBreedImage(_ likedBreedImage: LikedBreed) async {
         if var mockLikedBreedImages = mockLikedBreedImages {
             mockLikedBreedImages.append(likedBreedImage)
             self.mockLikedBreedImages = mockLikedBreedImages
@@ -40,14 +40,14 @@ class MockBreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async {
+    func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async {
         if var mockLikedBreedImages = mockLikedBreedImages {
             mockLikedBreedImages.removeAll { $0.breedName == breed.name && $0.imageURL == breedImage.image.absoluteString }
             self.mockLikedBreedImages = mockLikedBreedImages
         }
     }
 
-    func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreed] {
+    func fetchAllLikedBreedImages() async throws -> [LikedBreed] {
         if let mockLikedBreedImages = mockLikedBreedImages {
             return mockLikedBreedImages
         } else {
@@ -55,7 +55,7 @@ class MockBreedsRepository: BreedsRepositoryProtocol {
         }
     }
 
-    func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [LikedBreed] {
+    func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreed] {
         if let mockLikedBreedImages = mockLikedBreedImages {
             return mockLikedBreedImages.filter { $0.breedName == breed.name }
         } else {

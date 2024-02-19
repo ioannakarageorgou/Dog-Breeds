@@ -39,8 +39,8 @@ class BreedImageViewModel {
             do {
                 guard let breed = selectedBreed else { return }
 
-                let serverList = try await repository.fetchAllImagesFromServer(for: breed.name)
-                let likedList = try await repository.fetchLikedBreedImagesFromRealm(for: breed)
+                let serverList = try await repository.fetchAllImages(for: breed.name)
+                let likedList = try await repository.fetchLikedBreedImages(for: breed)
                 self.likedBreedImages = !likedList.isEmpty ? likedList : []
 
                 let combinedList = serverList.map { serverImage in
@@ -68,12 +68,12 @@ class BreedImageViewModel {
     private func likeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
         let likedBreedImage = LikedBreed(imageURL: breedImage.image.absoluteString, breedName: breed.name)
-        await repository.saveLikedBreedImageToRealm(likedBreedImage)
+        await repository.saveLikedBreedImage(likedBreedImage)
     }
     
     private func unlikeBreedImage(_ breedImage: BreedImage) async {
         guard let breed = selectedBreed else { return }
-        await repository.removeLikedBreedImageFromRealm(for: breed, and: breedImage)
+        await repository.removeLikedBreedImage(for: breed, and: breedImage)
     }
 
     func cancelTasks() {
