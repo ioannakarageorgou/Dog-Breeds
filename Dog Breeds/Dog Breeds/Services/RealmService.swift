@@ -15,6 +15,7 @@ protocol RealmServiceProtocol {
     func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreed]?
 }
 
+@MainActor
 class RealmService: RealmServiceProtocol {
     private let realm: Realm
 
@@ -22,21 +23,19 @@ class RealmService: RealmServiceProtocol {
         self.realm = realm
     }
 
+    static let shared = RealmService()
+
     func saveLikedBreedImage(_ likedBreedImage: LikedBreed) async throws {
-        try await MainActor.run {
-            try realm.write {
-                realm.add(likedBreedImage.object())
-            }
+        try await realm.asyncWrite {
+            realm.add(likedBreedImage.object())
         }
     }
 
     func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async throws {
-        try await MainActor.run {
-            let predicate = NSPredicate(format: "breedName == %@ AND imageURL == %@", breed.name, breedImage.image.absoluteString)
-            if let likedBreedImage = realm.objects(LikedBreedObject.self).filter(predicate).first {
-                try realm.write {
-                    realm.delete(likedBreedImage)
-                }
+        let predicate = NSPredicate(format: "breedName == %@ AND imageURL == %@", breed.name, breedImage.image.absoluteString)
+        if let likedBreedImage = realm.objects(LikedBreedObject.self).filter(predicate).first {
+            try await realm.asyncWrite {
+                realm.delete(likedBreedImage)
             }
         }
     }
@@ -59,3 +58,56 @@ class RealmService: RealmServiceProtocol {
     }
 }
 
+///  Swift 5.7 cvrash with asyc/await https://github.com/realm/realm-swift/issues/7737 -> use @MainActor
+//actor RealmActor: RealmActorProtocol {
+//    var realm: Realm!
+//
+//    private init() async {
+//        realm = try! await Realm(actor: self)
+//    }
+//
+//    private static var sharedTask: Task<RealmActor, Never>?
+//
+//    static func shared() async -> RealmActor {
+//        if let sharedTask {
+//            return await sharedTask.value
+//        }
+//        let task = Task { await RealmActor() }
+//        sharedTask = task
+//        return await task.value
+//    }
+//
+//    func saveLikedBreedImage(_ likedBreedImage: LikedBreed) async throws {
+//        try await realm.asyncWrite {
+//            realm.add(likedBreedImage.object())
+//        }
+//    }
+//
+//    func removeLikedBreedImage(for breed: Breed, and breedImage: BreedImage) async throws {
+//        let predicate = NSPredicate(format: "breedName == %@ AND imageURL == %@", breed.name, breedImage.image.absoluteString)
+//        if let likedBreedImage = realm.objects(LikedBreedObject.self).filter(predicate).first {
+//            try await realm.asyncWrite {
+//                realm.delete(likedBreedImage)
+//            }
+//        }
+//    }
+//
+//    func fetchAllLikedBreedImages() async throws -> [LikedBreed]? {
+//
+//        // asyncRefresh() can only be called on main thread or actor-isolated Realms
+//        await realm.asyncRefresh()
+//
+//        let realmObjects = realm.objects(LikedBreedObject.self)
+//        guard realmObjects.count > 0 else { return nil }
+//        return realmObjects.compactMap { LikedBreed(object: $0) }
+//    }
+//
+//    func fetchLikedBreedImages(for breed: Breed) async throws -> [LikedBreed]? {
+//        await realm.asyncRefresh()
+//
+//        let realmObjects = realm.objects(LikedBreedObject.self)
+//            .filter("breedName == %@", breed.name)
+//        guard realmObjects.count > 0 else { return nil }
+//        return realmObjects.compactMap { LikedBreed(object: $0) }
+//    }
+//}

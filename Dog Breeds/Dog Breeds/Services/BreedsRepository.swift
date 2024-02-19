@@ -23,7 +23,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
     private let networkManager: NetworkManagerProtocol
     private var realmService: RealmServiceProtocol
 
-    init(networkManager: NetworkManagerProtocol = NetworkManager(), realmService: RealmServiceProtocol = RealmService()) {
+    init(networkManager: NetworkManagerProtocol = NetworkManager(), realmService: RealmServiceProtocol = RealmService.shared) {
         self.networkManager = networkManager
         self.realmService = realmService
     }
