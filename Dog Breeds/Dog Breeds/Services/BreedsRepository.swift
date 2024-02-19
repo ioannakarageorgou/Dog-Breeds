@@ -21,9 +21,11 @@ protocol BreedsRepositoryProtocol {
 class BreedsRepository: BreedsRepositoryProtocol {
 
     private let networkManager: NetworkManagerProtocol
+    private var realmService: RealmServiceProtocol
 
-    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    init(networkManager: NetworkManagerProtocol = NetworkManager(), realmService: RealmServiceProtocol = RealmService()) {
         self.networkManager = networkManager
+        self.realmService = realmService
     }
 
     func fetchAllDogBreedsFromServer() async throws -> [Breed] {
@@ -87,7 +89,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
 
     func saveLikedBreedImageToRealm(_ likedBreedImage: LikedBreed) async {
         do {
-            try await RealmActor.shared().saveLikedBreedImage(likedBreedImage)
+            try await realmService.saveLikedBreedImage(likedBreedImage)
         } catch {
             print("Error saving liked breed image to Realm: \(error)")
         }
@@ -95,7 +97,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
 
     func removeLikedBreedImageFromRealm(for breed: Breed, and breedImage: BreedImage) async {
         do {
-            try await RealmActor.shared().removeLikedBreedImage(for: breed, and: breedImage)
+            try await realmService.removeLikedBreedImage(for: breed, and: breedImage)
         } catch {
             print("Error removing liked breed image from Realm: \(error)")
         }
@@ -103,7 +105,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
 
     func fetchAllLikedBreedImagesFromRealm() async throws -> [LikedBreed] {
         do {
-            return try await RealmActor.shared().fetchAllLikedBreedImages() ?? []
+            return try await realmService.fetchAllLikedBreedImages() ?? []
         } catch {
             print("Error fetching all liked breed images from Realm: \(error)")
             throw error
@@ -112,7 +114,7 @@ class BreedsRepository: BreedsRepositoryProtocol {
 
     func fetchLikedBreedImagesFromRealm(for breed: Breed) async throws -> [LikedBreed] {
         do {
-            return try await RealmActor.shared().fetchLikedBreedImages(for: breed) ?? []
+            return try await realmService.fetchLikedBreedImages(for: breed) ?? []
         } catch {
             print("Error fetching liked breed images from Realm for breed \(breed.name): \(error)")
             throw error
