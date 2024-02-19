@@ -13,39 +13,54 @@ class FavoriteBreedsViewModelTests: XCTestCase {
     var viewModel: FavoriteBreedsViewModel!
     var mockRepository: MockBreedsRepository!
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
         mockRepository = MockBreedsRepository()
-        viewModel = FavoriteBreedsViewModel(repository: mockRepository)
+        viewModel = await FavoriteBreedsViewModel(repository: mockRepository)
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         mockRepository = nil
         viewModel = nil
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func testFetchLikedBreedImagesSuccess() async {
-        let likedBreedImages = [LikedBreed(imageURL: "image1", breedName: "Breed1")]
-        mockRepository.mockLikedBreedImages = likedBreedImages
-        await viewModel.fetchLikedBreedImages()
+        let expectation = XCTestExpectation(description: "Fetch all liked dog images")
+        let mockLikedBreedImages = [LikedBreed(imageURL: "image1", breedName: "Breed1")]
+        mockRepository.mockLikedBreedImages = mockLikedBreedImages
 
-        XCTAssertNotNil(viewModel.likedBreedImages)
-        XCTAssertEqual(viewModel.likedBreedImages?.count, likedBreedImages.count)
+        await viewModel.fetchLikedBreedImages()
+        expectation.fulfill()
+        await fulfillment(of: [expectation], timeout: 3)
+
+        let likedBreedImages = await viewModel.likedBreedImages
+        XCTAssertNotNil(likedBreedImages)
+        XCTAssertEqual(likedBreedImages?.count, mockLikedBreedImages.count)
     }
 
     func testFetchLikedBreedImagesEmptyList() async {
+        let expectation = XCTestExpectation(description: "Fetch all liked dog images")
         mockRepository.mockLikedBreedImages = []
-        await viewModel.fetchLikedBreedImages()
 
-        XCTAssertNotNil(viewModel.likedBreedImages)
-        XCTAssertTrue(viewModel.likedBreedImages?.isEmpty ?? false)
+        await viewModel.fetchLikedBreedImages()
+        expectation.fulfill()
+        await fulfillment(of: [expectation], timeout: 3)
+
+        let likedBreedImages = await viewModel.likedBreedImages
+        XCTAssertNotNil(likedBreedImages)
+        XCTAssertTrue(likedBreedImages?.isEmpty ?? false)
     }
 
     func testFetchLikedBreedImagesFailure() async {
+        let expectation = XCTestExpectation(description: "Fetch all liked dog images")
         mockRepository.mockLikedBreedImages = nil
-        await viewModel.fetchLikedBreedImages()
 
-        XCTAssertNil(viewModel.likedBreedImages)
+        await viewModel.fetchLikedBreedImages()
+        expectation.fulfill()
+        await fulfillment(of: [expectation], timeout: 3)
+
+        let likedBreedImages = await viewModel.likedBreedImages
+        XCTAssertNil(likedBreedImages)
     }
 }

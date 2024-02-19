@@ -13,31 +13,41 @@ class BreedListViewModelTests: XCTestCase {
     var viewModel: BreedListViewModel!
     var mockRepository: MockBreedsRepository!
 
-    override func setUp() {
-        super.setUp()
+    override func setUp() async throws {
+        try await super.setUp()
         mockRepository = MockBreedsRepository()
-        viewModel = BreedListViewModel(repository: mockRepository)
+        viewModel = await BreedListViewModel(repository: mockRepository)
     }
 
-    override func tearDown() {
+    override func tearDown() async throws {
         mockRepository = nil
         viewModel = nil
-        super.tearDown()
+        try await super.tearDown()
     }
 
     func testFetchAllDogBreedsSuccess() async {
+        let expectation = XCTestExpectation(description: "Fetch all dog breeds")
         mockRepository.mockDogBreeds = [Breed(name: "Breed1"), Breed(name: "Breed2")]
-        await viewModel.fetchAllDogBreeds()
 
-        XCTAssertNotNil(viewModel.breeds)
-        XCTAssertEqual(viewModel.breeds?.count, mockRepository.mockDogBreeds?.count)
+        await viewModel.fetchAllDogBreeds()
+        expectation.fulfill()
+        await fulfillment(of: [expectation], timeout: 3)
+
+        let breeds = await viewModel.breeds
+        XCTAssertNotNil(breeds)
+        XCTAssertEqual(breeds?.count, mockRepository.mockDogBreeds?.count)
     }
 
     func testFetchAllDogBreedsEmptyList() async {
+        let expectation = XCTestExpectation(description: "Fetch all dog breeds")
         mockRepository.mockDogBreeds = []
-        await viewModel.fetchAllDogBreeds()
 
-        XCTAssertNotNil(viewModel.breeds)
-        XCTAssertTrue(viewModel.breeds?.isEmpty ?? false)
+        await viewModel.fetchAllDogBreeds()
+        expectation.fulfill()
+        await fulfillment(of: [expectation], timeout: 3)
+
+        let breeds = await viewModel.breeds
+        XCTAssertNotNil(breeds)
+        XCTAssertTrue(breeds?.isEmpty ?? false)
     }
 }
