@@ -59,6 +59,7 @@ class BreedImageViewModel {
     func tapLikeBreedImage(at index: Int) {
         let task = Task {
             guard let breedImage = breedImages?[index] else { return }
+            breedImages?[index].isLiked.toggle()
             breedImage.isLiked ? await unlikeBreedImage(breedImage) : await likeBreedImage(breedImage)
         }
         tasks.append(task)
