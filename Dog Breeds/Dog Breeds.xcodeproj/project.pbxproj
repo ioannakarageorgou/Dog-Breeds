@@ -30,7 +30,6 @@
 		015763232B5B0CB0003F82F5 /* BreedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */; };
 		015763262B5B0CF9003F82F5 /* BreedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */; };
 		015763282B5BC7BB003F82F5 /* BreedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763272B5BC7BB003F82F5 /* BreedImageCell.swift */; };
-		0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */; };
 		0157632E2B5BE689003F82F5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157632D2B5BE689003F82F5 /* MainCoordinator.swift */; };
 		015763312B5BF837003F82F5 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 015763302B5BF837003F82F5 /* Realm */; };
 		015763332B5BF837003F82F5 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 015763322B5BF837003F82F5 /* RealmSwift */; };
@@ -47,6 +46,7 @@
 		0157634B2B5D1A43003F82F5 /* BreedListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634A2B5D1A43003F82F5 /* BreedListViewModelTests.swift */; };
 		0157634D2B5D1D32003F82F5 /* BreedImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634C2B5D1D32003F82F5 /* BreedImageViewModelTests.swift */; };
 		0157634F2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634E2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift */; };
+		01D3A7ED2B83896D0005076E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 01D3A7EC2B83896D0005076E /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,6 @@
 		015763222B5B0CB0003F82F5 /* BreedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewController.swift; sourceTree = "<group>"; };
 		015763252B5B0CF9003F82F5 /* BreedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewModel.swift; sourceTree = "<group>"; };
 		015763272B5BC7BB003F82F5 /* BreedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageCell.swift; sourceTree = "<group>"; };
-		015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		0157632D2B5BE689003F82F5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		015763342B5BF848003F82F5 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		015763362B5BF87F003F82F5 /* LikedBreed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedBreed.swift; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01D3A7ED2B83896D0005076E /* Kingfisher in Frameworks */,
 				015763332B5BF837003F82F5 /* RealmSwift in Frameworks */,
 				015763312B5BF837003F82F5 /* Realm in Frameworks */,
 			);
@@ -283,7 +283,6 @@
 			children = (
 				015763162B5A8436003F82F5 /* Decodable+Extensions.swift */,
 				0157631C2B5AD0A4003F82F5 /* UIColor+Extensions.swift */,
-				015763292B5BD3BC003F82F5 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,6 +324,7 @@
 			packageProductDependencies = (
 				015763302B5BF837003F82F5 /* Realm */,
 				015763322B5BF837003F82F5 /* RealmSwift */,
+				01D3A7EC2B83896D0005076E /* Kingfisher */,
 			);
 			productName = "Dog Breeds";
 			productReference = 015762CD2B5A6547003F82F5 /* Dog Breeds.app */;
@@ -400,6 +400,7 @@
 			mainGroup = 015762C42B5A6546003F82F5;
 			packageReferences = (
 				0157632F2B5BF837003F82F5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				01D3A7EB2B83896D0005076E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 015762CE2B5A6547003F82F5 /* Products */;
 			projectDirPath = "";
@@ -450,7 +451,6 @@
 				015763212B5AF274003F82F5 /* BreedImage.swift in Sources */,
 				0157633D2B5C164F003F82F5 /* FavoriteBreedsViewModel.swift in Sources */,
 				0157631D2B5AD0A4003F82F5 /* UIColor+Extensions.swift in Sources */,
-				0157632A2B5BD3BC003F82F5 /* UIImageView+Extensions.swift in Sources */,
 				015763392B5C156A003F82F5 /* FavoriteBreedsViewController.swift in Sources */,
 				015763102B5A71FE003F82F5 /* BreedsRepository.swift in Sources */,
 				0157630D2B5A70C7003F82F5 /* AppConstants.swift in Sources */,
@@ -824,6 +824,14 @@
 				kind = branch;
 			};
 		};
+		01D3A7EB2B83896D0005076E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -836,6 +844,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0157632F2B5BF837003F82F5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		01D3A7EC2B83896D0005076E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01D3A7EB2B83896D0005076E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

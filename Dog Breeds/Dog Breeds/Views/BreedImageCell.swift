@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 protocol BreedImageCellDelegate: AnyObject {
     func didTapLikeButton(for cell: BreedImageCell)
@@ -72,7 +73,7 @@ class BreedImageCell: UICollectionViewCell {
 
     func configure(with breedImage: BreedImage?) {
         if let imageURL = breedImage?.image {
-            imageView.load(url: imageURL)
+            imageView.kf.setImage(with: imageURL)
         } else {
             imageView.image = UIImage(named: AppConstants.defaultDogImageName)
         }

@@ -53,7 +53,7 @@ class FavoriteBreedCell: UICollectionViewCell {
 
     func configure(with breedImageUrl: URL?, for breedName: String?) {
         if let imageURL = breedImageUrl{
-            imageView.load(url: imageURL)
+            imageView.kf.setImage(with: imageURL)
         } else {
             imageView.image = UIImage(named: AppConstants.defaultDogImageName)
         }
