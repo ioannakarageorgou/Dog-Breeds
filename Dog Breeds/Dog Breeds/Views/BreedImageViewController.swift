@@ -24,7 +24,7 @@ class BreedImageViewController: UIViewController {
         layout.itemSize = CGSize(width: 120, height: 160)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(BreedImageCell.self, forCellWithReuseIdentifier: BreedImageCell.identifier)
-        collectionView.backgroundColor = AppConstants.secondaryBackgroundColor
+        collectionView.backgroundColor = ColorTheme.Background.secondary
         return collectionView
     }()
 
@@ -44,7 +44,7 @@ class BreedImageViewController: UIViewController {
 
 private extension BreedImageViewController {
     func configureUI() {
-        view.backgroundColor = AppConstants.primaryBackgroundColor
+        view.backgroundColor = ColorTheme.Background.primary
 
         breedNameLabel.text = viewModel.selectedBreed?.name
         breedNameLabel.translatesAutoresizingMaskIntoConstraints = false

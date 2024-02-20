@@ -46,6 +46,7 @@
 		0157634B2B5D1A43003F82F5 /* BreedListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634A2B5D1A43003F82F5 /* BreedListViewModelTests.swift */; };
 		0157634D2B5D1D32003F82F5 /* BreedImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634C2B5D1D32003F82F5 /* BreedImageViewModelTests.swift */; };
 		0157634F2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0157634E2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift */; };
+		015ABC782B84C13B00F7C8BF /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015ABC772B84C13B00F7C8BF /* ColorTheme.swift */; };
 		01D3A7ED2B83896D0005076E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 01D3A7EC2B83896D0005076E /* Kingfisher */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		0157634A2B5D1A43003F82F5 /* BreedListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedListViewModelTests.swift; sourceTree = "<group>"; };
 		0157634C2B5D1D32003F82F5 /* BreedImageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedImageViewModelTests.swift; sourceTree = "<group>"; };
 		0157634E2B5D1F1A003F82F5 /* FavoriteBreedsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsViewModelTests.swift; sourceTree = "<group>"; };
+		015ABC772B84C13B00F7C8BF /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 			children = (
 				015763152B5A841B003F82F5 /* Extensions */,
 				0157630C2B5A70C7003F82F5 /* AppConstants.swift */,
+				015ABC772B84C13B00F7C8BF /* ColorTheme.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				015763352B5BF848003F82F5 /* RealmService.swift in Sources */,
 				015762D32B5A6547003F82F5 /* SceneDelegate.swift in Sources */,
 				0157633B2B5C15F0003F82F5 /* FavoriteBreedCell.swift in Sources */,
+				015ABC782B84C13B00F7C8BF /* ColorTheme.swift in Sources */,
 				015763232B5B0CB0003F82F5 /* BreedImageViewController.swift in Sources */,
 				015763172B5A8436003F82F5 /* Decodable+Extensions.swift in Sources */,
 				015763122B5A74BD003F82F5 /* BreedsListResponse.swift in Sources */,

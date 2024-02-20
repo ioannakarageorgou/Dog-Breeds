@@ -15,7 +15,6 @@ class BreedListViewController: UIViewController {
         let label = UILabel()
         label.text = AppConstants.dogBreedsTitle
         label.font = UIFont.systemFont(ofSize: 34, weight: .bold)
-        label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -73,7 +72,7 @@ private extension BreedListViewController {
     }
 
     func configureUI() {
-        view.backgroundColor = AppConstants.primaryBackgroundColor
+        view.backgroundColor = ColorTheme.Background.primary
         configureTitleLabel()
         configureFavoritesButton()
         configureTable()
@@ -110,7 +109,7 @@ private extension BreedListViewController {
             target: self,
             action: #selector(showFavorites)
         )
-        navigationItem.rightBarButtonItem?.tintColor = AppConstants.customBrown
+        navigationItem.rightBarButtonItem?.tintColor = ColorTheme.Button.accessory
     }
 
     @objc private func showFavorites() {

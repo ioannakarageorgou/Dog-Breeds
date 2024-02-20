@@ -21,11 +21,6 @@ struct AppConstants {
     static let liked = "Liked"
     static let favoriteBreedsTitle = "Favorite Breeds"
 
-    // Colors
-    static let primaryBackgroundColor = UIColor(hex: "#ededf2")
-    static let secondaryBackgroundColor = UIColor(hex: "#f6f6f6")
-    static let customBrown = UIColor(hex: "#8e6048")
-
     // Images
     static let heartImageName = "heart"
     static let heartFillImageName = "heart.fill"

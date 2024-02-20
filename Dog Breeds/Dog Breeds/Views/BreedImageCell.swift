@@ -34,12 +34,12 @@ class BreedImageCell: UICollectionViewCell {
 
     let likeButton: UIButton = {
         let button = UIButton()
-        button.tintColor = AppConstants.customBrown
+        button.tintColor = ColorTheme.Button.accessory
         let heartSymbolConfiguration = UIImage.SymbolConfiguration(scale: .large)
         let heartImage = UIImage(systemName: AppConstants.heartImageName, withConfiguration: heartSymbolConfiguration)
         button.setImage(heartImage, for: .normal)
         button.setTitle(AppConstants.like, for: .normal)
-        button.setTitleColor(AppConstants.customBrown, for: .normal)
+        button.setTitleColor(ColorTheme.Button.accessory, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

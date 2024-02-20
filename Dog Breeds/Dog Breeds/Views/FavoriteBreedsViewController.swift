@@ -27,7 +27,7 @@ class FavoriteBreedsViewController: UIViewController {
         layout.itemSize = CGSize(width: 120, height: 160)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(FavoriteBreedCell.self, forCellWithReuseIdentifier: FavoriteBreedCell.identifier)
-        collectionView.backgroundColor = AppConstants.secondaryBackgroundColor
+        collectionView.backgroundColor = ColorTheme.Background.secondary
         return collectionView
     }()
 
@@ -47,7 +47,7 @@ class FavoriteBreedsViewController: UIViewController {
 
 private extension FavoriteBreedsViewController {
     func configureUI() {
-        view.backgroundColor = AppConstants.primaryBackgroundColor
+        view.backgroundColor = ColorTheme.Background.primary
 
         view.addSubview(titleLabel)
         collectionView.translatesAutoresizingMaskIntoConstraints = false

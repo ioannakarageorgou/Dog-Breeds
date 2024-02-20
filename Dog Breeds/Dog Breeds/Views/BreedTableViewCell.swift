@@ -25,7 +25,7 @@ class BreedTableViewCell: UITableViewCell {
             contentLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             contentLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
-        contentView.backgroundColor = AppConstants.secondaryBackgroundColor
+        contentView.backgroundColor = ColorTheme.Background.secondary
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = false
         contentView.layer.shadowColor = UIColor.black.cgColor

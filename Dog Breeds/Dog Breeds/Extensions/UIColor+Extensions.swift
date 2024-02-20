@@ -24,4 +24,10 @@ extension UIColor {
 
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
+
+    convenience init(light: UIColor, dark: UIColor) {
+        self.init { traitCollection in
+            traitCollection.userInterfaceStyle == .dark ? dark : light
+        }
+    }
 }
